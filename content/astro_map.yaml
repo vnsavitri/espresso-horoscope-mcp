@@ -1,11 +1,11 @@
 # Astrological Mapping for Espresso Brewing Diagnostics
 # Each rule ID maps to cosmic themes and personalized mantras
+# Titles and mantras will be selected from flavour.yaml using seeded random
 
 astro_map:
   under_extracted_fast:
     emoji: "🌅"
-    title: "The Rising Dawn"
-    mantra: "Patience brings depth to every moment"
+    # title and mantra will be selected from flavour.yaml
     template: |
       Your shot flows like the morning sun - bright and quick, but lacking the deep warmth of midday. 
       At {brew_ratio:.2f}:1 ratio in just {shot_end_s:.0f} seconds, your espresso seeks more time to develop its full character. 
@@ -14,8 +14,7 @@ astro_map:
 
   over_extracted_slow:
     emoji: "🌙"
-    title: "The Lingering Moon"
-    mantra: "Release what no longer serves you"
+    # title and mantra will be selected from flavour.yaml
     template: |
       Like the moon that lingers too long in the morning sky, your shot has overstayed its welcome. 
       At {brew_ratio:.2f}:1 ratio over {shot_end_s:.0f} seconds, the magic has turned to bitterness. 
@@ -24,8 +23,7 @@ astro_map:
 
   choking_high_resistance:
     emoji: "⚡"
-    title: "The Thunderous Storm"
-    mantra: "Break through barriers with gentle strength"
+    # title and mantra will be selected from flavour.yaml
     template: |
       Your shot battles against cosmic resistance, like thunder struggling through dense clouds. 
       With {flow_avg_ml_s:.2f} ml/s flow under {peak_pressure_bar:.1f} bar pressure, 
@@ -35,8 +33,7 @@ astro_map:
 
   channeling_instability:
     emoji: "🌊"
-    title: "The Turbulent Waters"
-    mantra: "Find your center in the chaos"
+    # title and mantra will be selected from flavour.yaml
     template: |
       Your shot flows like turbulent waters, finding unexpected paths through the cosmic landscape. 
       With a channeling score of {channeling_score_0_1:.2f}, the universe reveals 
@@ -46,8 +43,7 @@ astro_map:
 
   temp_low_flat:
     emoji: "❄️"
-    title: "The Frozen Moment"
-    mantra: "Warmth awakens hidden potential"
+    # title and mantra will be selected from flavour.yaml
     template: |
       Your shot exists in a frozen moment, like a star that has lost its fire. 
       At {temp_avg_c:.1f}°C, the cosmic energy remains dormant, 
@@ -57,8 +53,7 @@ astro_map:
 
   temp_high_bitter:
     emoji: "🔥"
-    title: "The Burning Star"
-    mantra: "Cool the flames to reveal the light"
+    # title and mantra will be selected from flavour.yaml
     template: |
       Your shot burns with the intensity of a dying star, 
       its {temp_avg_c:.1f}°C temperature creating bitter shadows. 
@@ -68,8 +63,7 @@ astro_map:
 
   sweet_spot:
     emoji: "✨"
-    title: "The Perfect Alignment"
-    mantra: "You have found your cosmic rhythm"
+    # title and mantra will be selected from flavour.yaml
     template: |
       🌟 **COSMIC PERFECTION ACHIEVED** 🌟
       

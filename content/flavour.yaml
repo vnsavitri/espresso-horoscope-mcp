@@ -1,0 +1,272 @@
+# Flavour banks for seeded horoscope variations
+# Each rule can have multiple title/tagline options that are selected deterministically
+
+titles:
+  under_extracted_fast:
+    - "Hasty Constellation"
+    - "Swift Meteor"
+    - "Racing Comet"
+    - "Lightning Brew"
+    - "Fleeting Star"
+    - "Rapid Pulsar"
+  
+  over_extracted_slow:
+    - "Stubborn Orbit"
+    - "Persistent Galaxy"
+    - "Enduring Nebula"
+    - "Patient Cosmos"
+    - "Steady Supernova"
+    - "Resilient Quasar"
+  
+  choking_high_resistance:
+    - "Gravity Well"
+    - "Black Hole Brew"
+    - "Dense Constellation"
+    - "Compressed Cosmos"
+    - "Tight Orbit"
+    - "Pressure Vortex"
+  
+  channeling_instability:
+    - "Eclipse"
+    - "Chaotic Galaxy"
+    - "Turbulent Nebula"
+    - "Fractured Constellation"
+    - "Unstable Orbit"
+    - "Wild Pulsar"
+  
+  temp_low_flat:
+    - "Nebula"
+    - "Muted Galaxy"
+    - "Soft Constellation"
+    - "Gentle Cosmos"
+    - "Subtle Star"
+    - "Quiet Universe"
+  
+  temp_high_bitter:
+    - "Supernova"
+    - "Burning Galaxy"
+    - "Intense Constellation"
+    - "Fiery Cosmos"
+    - "Scorching Star"
+    - "Volatile Universe"
+  
+  sweet_spot:
+    - "Equinox"
+    - "Perfect Balance"
+    - "Cosmic Harmony"
+    - "Stellar Alignment"
+    - "Universal Balance"
+    - "Celestial Perfection"
+
+taglines:
+  under_extracted_fast:
+    - "Blink and it's gone."
+    - "Speed of light, taste of air."
+    - "Faster than a shooting star."
+    - "Quick as cosmic dust."
+    - "Swift as starlight."
+    - "Racing through the void."
+  
+  over_extracted_slow:
+    - "Ease the grind and let sweetness in."
+    - "Patience rewards the cosmic soul."
+    - "Slow and steady wins the galaxy."
+    - "Time is the universe's greatest teacher."
+    - "Endurance builds stellar character."
+    - "Persistence pays in cosmic dividends."
+  
+  choking_high_resistance:
+    - "Nothing escapes a choking puck."
+    - "Resistance creates cosmic pressure."
+    - "The universe tests your resolve."
+    - "Pressure forges stellar strength."
+    - "Resistance builds character."
+    - "The cosmos demands your patience."
+  
+  channeling_instability:
+    - "Hidden paths in the basket."
+    - "Chaos creates cosmic beauty."
+    - "Unpredictable as the universe itself."
+    - "Turbulence shapes stellar destiny."
+    - "Instability breeds innovation."
+    - "Chaos is the universe's playground."
+  
+  temp_low_flat:
+    - "Soft light, muted cup."
+    - "Gentle as cosmic whispers."
+    - "Subtle as starlight."
+    - "Quiet as the void."
+    - "Soft as nebula clouds."
+    - "Gentle as moonbeams."
+  
+  temp_high_bitter:
+    - "All heat, edgy finish."
+    - "Intense as a supernova."
+    - "Burning with cosmic fire."
+    - "Scorching like stellar winds."
+    - "Volatile as cosmic storms."
+    - "Intense as galactic cores."
+  
+  sweet_spot:
+    - "Balance achieved."
+    - "Perfect cosmic harmony."
+    - "Stellar alignment complete."
+    - "Universal balance restored."
+    - "Celestial perfection achieved."
+    - "Cosmic equilibrium found."
+
+# Tonal variations for different style preferences
+tones:
+  chill:
+    - "mellow"
+    - "gentle"
+    - "smooth"
+    - "calm"
+    - "serene"
+    - "peaceful"
+    - "tranquil"
+    - "relaxed"
+  
+  punchy:
+    - "bold"
+    - "dynamic"
+    - "energetic"
+    - "vibrant"
+    - "intense"
+    - "powerful"
+    - "striking"
+    - "dramatic"
+  
+  nerdy:
+    - "precise"
+    - "analytical"
+    - "methodical"
+    - "calculated"
+    - "systematic"
+    - "technical"
+    - "scientific"
+    - "logical"
+  
+  mystical:
+    - "mystical"
+    - "enigmatic"
+    - "ethereal"
+    - "transcendent"
+    - "otherworldly"
+    - "cosmic"
+    - "celestial"
+    - "divine"
+
+# Cosmic nouns for flavor text
+cosmic_nouns:
+  - "nebula"
+  - "constellation"
+  - "galaxy"
+  - "supernova"
+  - "pulsar"
+  - "quasar"
+  - "black hole"
+  - "white dwarf"
+  - "aurora"
+  - "eclipse"
+  - "equinox"
+  - "solstice"
+  - "cosmos"
+  - "universe"
+  - "stardust"
+  - "meteor"
+  - "comet"
+  - "planet"
+  - "moon"
+  - "sun"
+
+# Action verbs for dynamic descriptions
+cosmic_verbs:
+  - "dances"
+  - "swirls"
+  - "spirals"
+  - "orbits"
+  - "pulses"
+  - "glows"
+  - "shimmers"
+  - "sparkles"
+  - "radiates"
+  - "emanates"
+  - "transcends"
+  - "ascends"
+  - "descends"
+  - "emerges"
+  - "dissolves"
+  - "transforms"
+  - "evolves"
+  - "manifests"
+  - "materializes"
+  - "dematerializes"
+
+# Seasonal flavor modifiers
+seasonal_modifiers:
+  spring:
+    - "fresh"
+    - "renewed"
+    - "blooming"
+    - "awakening"
+    - "vibrant"
+    - "energetic"
+  
+  summer:
+    - "bright"
+    - "radiant"
+    - "intense"
+    - "luminous"
+    - "brilliant"
+    - "vibrant"
+  
+  autumn:
+    - "rich"
+    - "warm"
+    - "mellow"
+    - "golden"
+    - "cozy"
+    - "comforting"
+  
+  winter:
+    - "crisp"
+    - "clear"
+    - "pure"
+    - "serene"
+    - "still"
+    - "contemplative"
+
+# Time-of-day mood modifiers
+time_modifiers:
+  morning:
+    - "awakening"
+    - "fresh"
+    - "energetic"
+    - "bright"
+    - "optimistic"
+    - "hopeful"
+  
+  afternoon:
+    - "balanced"
+    - "steady"
+    - "confident"
+    - "productive"
+    - "focused"
+    - "determined"
+  
+  evening:
+    - "reflective"
+    - "mellow"
+    - "contemplative"
+    - "peaceful"
+    - "grateful"
+    - "content"
+  
+  night:
+    - "mysterious"
+    - "deep"
+    - "introspective"
+    - "dreamy"
+    - "ethereal"
+    - "transcendent"

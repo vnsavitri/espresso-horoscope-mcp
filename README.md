@@ -1,6 +1,6 @@
 # Espresso Horoscope — Gaggiuino MCP Edition
 
-Local espresso telemetry → playful “cosmic” cards with numeric next-shot advice.  
+Local espresso telemetry → playful "cosmic" cards with numeric next-shot advice.  
 Built for the **gpt-oss hackathon**. The project **must apply `gpt-oss:20b`** (local, via Ollama) behind a flag, and run offline by default.
 
 ---
@@ -10,7 +10,12 @@ Built for the **gpt-oss hackathon**. The project **must apply `gpt-oss:20b`** (l
 - Normalises to a simple shot schema.
 - Extracts features (`features/extract.py`).
 - Applies rules (`rules/diagnostics.yaml`) to produce clear diagnostics with numbers.
-- Renders Markdown “horoscope” cards (`cli/cards.py`) and a tiny local web preview (`web/app.py`).
+- Renders Markdown "horoscope" cards (`cli/cards.py`) and a beautiful web interface (`web/app.py`).
+- **NEW**: Personalized horoscope cards with birth date integration
+- **NEW**: Historical tracking and trend analysis
+- **NEW**: Style evolution recommendations
+- **NEW**: Community insights and comparisons
+- **NEW**: Beautiful shadcn-inspired UI with 5 interactive tabs
 
 ---
 
@@ -44,6 +49,48 @@ make web           # open http://127.0.0.1:8000
 # 5) Optional: Add AI enhancement (see section below for Ollama or LM Studio setup)
 ```
 
+## 🎨 **NEW: Beautiful Web Interface**
+
+The web interface now features a beautiful shadcn-inspired design with 5 interactive tabs:
+
+### **☕ Current Cards Tab**
+- Your latest horoscope card with GPT-OSS enhanced text
+- Beautiful dashboard-style layout with metrics grid
+- Personalized content based on your birth date
+
+### **📊 Trends Tab**
+- Your coffee journey analytics
+- Consistency scores and reading patterns
+- Personalized insights based on your history
+
+### **📅 Timeline Tab**
+- Visual timeline of your readings
+- Reading history and progression
+- Style evolution over time
+
+### **🎭 Style Tab**
+- Style evolution recommendations
+- Seasonal and growth suggestions
+- Confidence scores for recommendations
+
+### **🌟 Community Tab**
+- Community insights and comparisons
+- Global statistics and benchmarks
+- See how you compare to other coffee enthusiasts
+
+### **Running the Web Interface**
+
+```bash
+# Start the web server
+python web/app.py
+
+# Or use the make target
+make web
+
+# Open your browser to:
+# http://localhost:8000 (or http://127.0.0.1:8000)
+```
+
 
 If you don’t have MCP samples, run the simulator (`tools/simulate_shots.py`) to create synthetic shots.
 
@@ -55,7 +102,7 @@ We bundle recorded `getShotData` JSON samples in `sample/mcp_shots/`.
 
 Convert and run:
 
-bash
+```bash
 python tools/record_from_mcp.py sample/mcp_shots/*.json -o data/shots.jsonl
 python features/extract.py data/shots.jsonl -o data/features.jsonl
 python cli/cards.py --features data/features.jsonl \
@@ -64,6 +111,36 @@ python cli/cards.py --features data/features.jsonl \
 ```
 
 **With a machine (optional):** call MCP tools `getLatestShotId` → `getShotData(id)`, save the JSON, and replay as above.
+
+## 🎯 **NEW: Personalized Horoscope Cards**
+
+The system now supports personalized horoscope cards based on your birth date:
+
+```bash
+# Generate personalized cards with your birth date (MMDD format)
+python cli/cards.py --features data/features.jsonl \
+  --rules rules/diagnostics.yaml --astro content/astro_map.yaml \
+  --flavour content/flavour.yaml --out out/cards.md \
+  --birth-date 0611 --style-bank chill --style gptoss
+
+# Your birth date will influence:
+# - Personalized cosmic readings
+# - Style recommendations
+# - Historical trend analysis
+# - Seeded content generation for consistency
+```
+
+### **Birth Date Integration**
+- **Format**: MMDD (e.g., 0611 for June 11th)
+- **Influence**: Affects cosmic readings, style preferences, and content generation
+- **Storage**: Stored locally in `~/.espresso_horoscope/config.yaml`
+- **Privacy**: All data stays local, no external sharing
+
+### **Style Banks**
+- **chill**: Relaxed, introspective tone
+- **punchy**: Energetic, action-oriented tone  
+- **nerdy**: Technical, analytical tone
+- **mystical**: Spiritual, cosmic tone
 
 ---
 
@@ -196,6 +273,87 @@ sample/mcp_shots/*.json        # recorded MCP samples
 * **Option 1 (Ollama)**: `brew install ollama && ollama pull gpt-oss:20b`
 * **Option 2 (LM Studio)**: Use existing installation with gpt-oss model
 * Set appropriate `OPENAI_BASE_URL` and test with `--style gptoss`
+
+## 🚀 **For Judges and Users Forking This Repo**
+
+### **Complete Setup Instructions**
+
+1. **Clone and Setup**
+```bash
+git clone https://github.com/vnsavitri/espresso-horoscope-mcp.git
+cd espresso-horoscope-mcp
+```
+
+2. **Install Dependencies**
+```bash
+# macOS
+brew install python@3.11 jq
+
+# Install Python dependencies
+pip install -r requirements.txt
+# OR if you have uv:
+uv venv && uv pip install -e .
+```
+
+3. **Run the Demo**
+```bash
+# Generate sample data and cards
+make demo
+
+# Start the web interface
+make web
+
+# Open browser to http://localhost:8000
+```
+
+4. **Test AI Enhancement (Optional)**
+```bash
+# Option 1: Ollama
+brew install ollama
+ollama pull gpt-oss:20b
+export OPENAI_BASE_URL="http://localhost:11434/v1"
+export OPENAI_API_KEY="ollama"
+
+# Option 2: LM Studio (if you have it)
+# Start LM Studio server, then:
+export OPENAI_BASE_URL="http://localhost:1234/v1"
+export OPENAI_API_KEY="lm-studio"
+
+# Test with AI enhancement
+python cli/cards.py --features data/features.jsonl \
+  --rules rules/diagnostics.yaml --astro content/astro_map.yaml \
+  --flavour content/flavour.yaml --out out/cards.md \
+  --birth-date 0611 --style-bank chill --style gptoss
+```
+
+### **Key Features to Test**
+
+1. **Basic Functionality**
+   - `make demo` should generate `out/cards.md`
+   - Web interface should load at `http://localhost:8000`
+   - All 5 tabs should be functional
+
+2. **Personalization**
+   - Try different birth dates: `--birth-date 0611`, `--birth-date 1225`
+   - Test different style banks: `--style-bank chill`, `--style-bank punchy`
+   - Check that content changes based on input
+
+3. **AI Enhancement**
+   - Test with `--style gptoss` flag
+   - Verify numbers and units remain unchanged
+   - Check that text is enhanced with cosmic/playful tone
+
+4. **Web Interface**
+   - Navigate between all 5 tabs
+   - Check trends and timeline data
+   - Verify responsive design
+
+### **Troubleshooting**
+
+- **Port conflicts**: Try different ports (3000, 5000, 8080)
+- **Python issues**: Ensure you're using Python 3.11+
+- **Dependencies**: Run `pip install -r requirements.txt`
+- **LM Studio**: Make sure the server is running and model is loaded
 
 ---
 
