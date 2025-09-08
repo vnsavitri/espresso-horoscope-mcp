@@ -1,1 +1,89 @@
-cards:
+# Astrological Mapping for Espresso Brewing Diagnostics
+# Each rule ID maps to cosmic themes and personalized mantras
+
+astro_map:
+  under_extracted_fast:
+    emoji: "🌅"
+    title: "The Rising Dawn"
+    mantra: "Patience brings depth to every moment"
+    template: |
+      Your shot flows like the morning sun - bright and quick, but lacking the deep warmth of midday. 
+      At {brew_ratio:.2f}:1 ratio in just {shot_end_s:.0f} seconds, your espresso seeks more time to develop its full character. 
+      The cosmos whispers: slow down, let the magic unfold. Grind finer, extend the journey, 
+      and watch as your coffee transforms from a fleeting glimpse into a profound experience.
+
+  over_extracted_slow:
+    emoji: "🌙"
+    title: "The Lingering Moon"
+    mantra: "Release what no longer serves you"
+    template: |
+      Like the moon that lingers too long in the morning sky, your shot has overstayed its welcome. 
+      At {brew_ratio:.2f}:1 ratio over {shot_end_s:.0f} seconds, the magic has turned to bitterness. 
+      The stars counsel: sometimes less is more. Coarsen your grind, lighten your touch, 
+      and let your espresso dance freely rather than being held captive by time.
+
+  choking_high_resistance:
+    emoji: "⚡"
+    title: "The Thunderous Storm"
+    mantra: "Break through barriers with gentle strength"
+    template: |
+      Your shot battles against cosmic resistance, like thunder struggling through dense clouds. 
+      With {flow_avg_ml_s:.2f} ml/s flow under {peak_pressure_bar:.1f} bar pressure, 
+      the universe demands a gentler approach. The planets align to suggest: 
+      coarsen your grind, reduce your dose, and let the waters of extraction flow freely. 
+      Sometimes the greatest strength lies in yielding.
+
+  channeling_instability:
+    emoji: "🌊"
+    title: "The Turbulent Waters"
+    mantra: "Find your center in the chaos"
+    template: |
+      Your shot flows like turbulent waters, finding unexpected paths through the cosmic landscape. 
+      With a channeling score of {channeling_score_0_1:.2f}, the universe reveals 
+      the need for better preparation and alignment. The stars guide you: 
+      use WDT, perfect your tamping, and create a harmonious foundation. 
+      In chaos, find your center; in preparation, find your peace.
+
+  temp_low_flat:
+    emoji: "❄️"
+    title: "The Frozen Moment"
+    mantra: "Warmth awakens hidden potential"
+    template: |
+      Your shot exists in a frozen moment, like a star that has lost its fire. 
+      At {temp_avg_c:.1f}°C, the cosmic energy remains dormant, 
+      waiting to be awakened. The universe calls for warmth: 
+      increase your temperature, allow proper warm-up, and watch as 
+      your espresso transforms from cold stone to liquid gold.
+
+  temp_high_bitter:
+    emoji: "🔥"
+    title: "The Burning Star"
+    mantra: "Cool the flames to reveal the light"
+    template: |
+      Your shot burns with the intensity of a dying star, 
+      its {temp_avg_c:.1f}°C temperature creating bitter shadows. 
+      The cosmos whispers of balance: reduce the heat, 
+      allow cooling, and discover the sweet essence hidden 
+      beneath the scorching surface. In moderation lies perfection.
+
+  sweet_spot:
+    emoji: "✨"
+    title: "The Perfect Alignment"
+    mantra: "You have found your cosmic rhythm"
+    template: |
+      🌟 **COSMIC PERFECTION ACHIEVED** 🌟
+      
+      Your shot exists in perfect harmony with the universe! 
+      At {brew_ratio:.2f}:1 ratio over {shot_end_s:.0f} seconds, 
+      with {temp_avg_c:.1f}°C temperature and {channeling_score_0_1:.2f} channeling score, 
+      you have achieved the rare alignment that baristas dream of.
+      
+      The planets dance in celebration of your mastery. 
+      Your espresso flows like liquid starlight, 
+      each drop a testament to the perfect balance of science and art. 
+      
+      This is your moment of cosmic connection - 
+      document it, cherish it, and let it guide your future brews. 
+      You have touched the divine through the simple act of extraction.
+      
+      🎭 **Today's Cosmic Message**: "In perfect balance, we find our true nature."

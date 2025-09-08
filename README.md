@@ -23,7 +23,7 @@ Built for the **gpt-oss hackathon**. The project **must apply `gpt-oss:20b`** (l
 
 ## Quick start
 
-bash
+```bash
 # 0) macOS tools (once)
 brew install python@3.11 uv pre-commit jq
 
@@ -40,6 +40,9 @@ make demo          # -> data/features.jsonl, out/cards.md
 
 # 4) preview
 make web           # open http://127.0.0.1:8000
+
+# 5) Optional: Add AI enhancement (see section below for Ollama or LM Studio setup)
+```
 
 
 If you don’t have MCP samples, run the simulator (`tools/simulate_shots.py`) to create synthetic shots.
@@ -68,16 +71,56 @@ python cli/cards.py --features data/features.jsonl \
 
 Off by default. When enabled, **only phrasing changes**. Numbers and units stay fixed.
 
-bash
+### Option 1: Ollama (Recommended for judges)
+
+```bash
+# Install Ollama
 brew install ollama
+
+# Start Ollama service
+brew services start ollama
+
+# Pull the gpt-oss model (13GB download)
 ollama pull gpt-oss:20b
+
+# Set environment variables
 export OPENAI_BASE_URL="http://localhost:11434/v1"
 export OPENAI_API_KEY="ollama"
 
-# render with gpt-oss paraphrase
+# Render with gpt-oss enhancement
 python cli/cards.py --features data/features.jsonl \
   --rules rules/diagnostics.yaml --astro content/astro_map.yaml \
   --out out/cards.md --style gptoss
+```
+
+### Option 2: LM Studio (If you already have it)
+
+```bash
+# If you already have LM Studio with gpt-oss model:
+# 1. Open LM Studio
+# 2. Go to "Local Server" tab
+# 3. Click "Start Server" (usually runs on port 1234)
+# 4. Load your gpt-oss model in the Chat tab
+
+# Set environment variables for LM Studio
+export OPENAI_BASE_URL="http://localhost:1234/v1"
+export OPENAI_API_KEY="ollama"
+
+# Render with gpt-oss enhancement
+python cli/cards.py --features data/features.jsonl \
+  --rules rules/diagnostics.yaml --astro content/astro_map.yaml \
+  --out out/cards.md --style gptoss
+```
+
+### Testing the AI Enhancement
+
+```bash
+# Test the gptoss helper directly
+python cli/gptoss_helper.py "Your shot flows like liquid starlight at 2.03:1 ratio over 29 seconds."
+
+# Should output enhanced text like:
+# "Your shot glides like liquid starlight, dancing at a 2.03:1 ratio over 29 seconds, as the cosmos align..."
+```
 
 ---
 
@@ -145,8 +188,14 @@ sample/mcp_shots/*.json        # recorded MCP samples
 * `make demo` produces `out/cards.md`.
 * Sample data included.
 * Offline run proven.
-* `--style gptoss` shows **`gpt-oss:20b`** use locally.
+* `--style gptoss` shows **`gpt-oss:20b`** use locally (Ollama or LM Studio).
+* Web interface at `http://127.0.0.1:8000` shows beautiful cosmic styling.
 * ≤3-minute video matches repo steps.
+
+### For AI Enhancement Testing:
+* **Option 1 (Ollama)**: `brew install ollama && ollama pull gpt-oss:20b`
+* **Option 2 (LM Studio)**: Use existing installation with gpt-oss model
+* Set appropriate `OPENAI_BASE_URL` and test with `--style gptoss`
 
 ---
 

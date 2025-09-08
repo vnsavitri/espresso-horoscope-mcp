@@ -1,8 +1,8 @@
-PY=uv run
+PY=/opt/homebrew/bin/python3.12
 .PHONY: record extract cards web demo check
 record: ; $(PY) tools/record_from_mcp.py sample/mcp_shots/*.json -o data/shots.jsonl
-extract: ; $(PY) features/extract.py data/shots.jsonl -o data/features.jsonl
-cards: ; $(PY) cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md
+extract: data/shots.jsonl ; $(PY) features/extract.py data/shots.jsonl -o data/features.jsonl
+cards: data/features.jsonl ; $(PY) cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md
 web: ; $(PY) web/app.py
 demo: record extract cards ; @echo "Demo built -> out/cards.md"
 check:

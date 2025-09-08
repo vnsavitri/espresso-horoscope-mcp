@@ -1,1 +1,85 @@
+# Espresso Brewing Diagnostic Rules
+# Each rule defines conditions for identifying brewing issues and providing advice
+
 rules:
+  under_extracted_fast:
+    id: "under_extracted_fast"
+    label: "Under-Extracted & Fast Shot"
+    when: "brew_ratio < 1.8 and shot_end_s < 22"
+    severity: "warning"
+    advice:
+      - "Grind finer to increase extraction time"
+      - "Increase dose slightly (0.5-1g)"
+      - "Check for channeling or uneven tamping"
+      - "Consider longer preinfusion"
+
+  over_extracted_slow:
+    id: "over_extracted_slow"
+    label: "Over-Extracted & Slow Shot"
+    when: "brew_ratio > 2.4 and shot_end_s > 38"
+    severity: "warning"
+    advice:
+      - "Grind coarser to reduce extraction time"
+      - "Reduce dose slightly (0.5-1g)"
+      - "Check for over-tamping"
+      - "Consider shorter preinfusion"
+
+  choking_high_resistance:
+    id: "choking_high_resistance"
+    label: "Choking - High Resistance"
+    when: "flow_avg_ml_s < 1.0 and peak_pressure_bar >= 10.0"
+    severity: "error"
+    advice:
+      - "Grind significantly coarser"
+      - "Reduce dose by 1-2g"
+      - "Check for over-tamping"
+      - "Clean group head and basket"
+      - "Verify water flow rate"
+
+  channeling_instability:
+    id: "channeling_instability"
+    label: "Channeling & Instability"
+    when: "channeling_score_0_1 > 0.35"
+    severity: "error"
+    advice:
+      - "Improve puck preparation technique"
+      - "Use WDT (Weiss Distribution Technique)"
+      - "Check for uneven tamping"
+      - "Verify basket cleanliness"
+      - "Consider different basket size"
+
+  temp_low_flat:
+    id: "temp_low_flat"
+    label: "Low Temperature - Flat Taste"
+    when: "temp_avg_c < 90.5"
+    severity: "warning"
+    advice:
+      - "Increase boiler temperature"
+      - "Allow longer warm-up time"
+      - "Check for scale buildup"
+      - "Consider temperature surfing"
+      - "Verify PID settings"
+
+  temp_high_bitter:
+    id: "temp_high_bitter"
+    label: "High Temperature - Bitter Taste"
+    when: "temp_avg_c > 94.5"
+    severity: "warning"
+    advice:
+      - "Decrease boiler temperature"
+      - "Reduce preheating time"
+      - "Check for overheating"
+      - "Consider cooling flush"
+      - "Verify PID calibration"
+
+  sweet_spot:
+    id: "sweet_spot"
+    label: "Sweet Spot - Optimal Extraction"
+    when: "1.9 <= brew_ratio <= 2.2 and 25 <= shot_end_s <= 32 and channeling_score_0_1 <= 0.35"
+    severity: "success"
+    advice:
+      - "Excellent shot parameters!"
+      - "Maintain current grind setting"
+      - "Keep consistent puck preparation"
+      - "Document these settings for future reference"
+      - "Consider this as your baseline recipe"
