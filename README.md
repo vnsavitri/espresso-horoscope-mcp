@@ -18,7 +18,8 @@ This isn't just another data visualization tool. It's a **personalized experienc
 Want to see it in action? Here's how to get started:
 
 ### Prerequisites
-- Python 3.9+ 
+
+- Python 3.9+
 - Node.js 18+ (for the web UI)
 - A sense of wonder ✨
 
@@ -58,15 +59,10 @@ Then open http://localhost:3001/?mmdd=0802 (replace 0802 with your birth date) a
 ### The Magic Behind the Scenes
 
 1. **Shot Palette Generation** - I created a diverse collection of 15 realistic espresso shots covering all brewing scenarios (fast, slow, choked, channeled, temperature issues, etc.)
-
 2. **Deterministic Selection** - Your birth date (MMDD) is used to deterministically select 3 unique shots from the palette. Same birth date = same shots, different birth date = different shots.
-
 3. **Feature Extraction** - Each shot gets analyzed for brewing metrics: brew ratio, shot time, peak pressure, temperature, and channeling score.
-
 4. **Rule-Based Diagnostics** - The system applies diagnostic rules to identify what went right or wrong with each shot.
-
 5. **Cosmic Interpretation** - Each diagnostic gets mapped to a mystical theme with personalized advice, powered by your zodiac sign and seeded randomness.
-
 6. **Beautiful Rendering** - Everything comes together in gorgeous horoscope cards with your zodiac animal emoji and personalized cosmic wisdom.
 
 ### The Technical Stack
@@ -80,17 +76,20 @@ Then open http://localhost:3001/?mmdd=0802 (replace 0802 with your birth date) a
 ## 🎨 Features
 
 ### Personalized Horoscope Cards
+
 - **Zodiac Integration**: Your birth date determines your zodiac sign with fun animal emojis (🦁 Leo, 🐐 Capricorn, 🐟 Pisces, etc.)
 - **Seeded Randomness**: Same shot + same user + same date = same phrasing, but different users get different cosmic interpretations
 - **Real Brewing Data**: Every reading is based on actual shot parameters, not random text
 
 ### Modern Web Interface
+
 - **Clean Design**: Minimalist, browser-friendly layout (768×1024) that looks great on any screen
 - **Real-time Filtering**: Add `?mmdd=0802` to any URL to see personalized cards
 - **Shareable Links**: Direct links to specific cards for specific users
 - **Responsive**: Works perfectly on desktop and mobile
 
 ### High-Quality Export
+
 - **Social Media Ready**: Export cards as PNG/JPG images in portrait (768×1024) or OG (1200×630) formats
 - **Batch Export**: Generate all cards at once with a single command
 - **Professional Quality**: Perfect for sharing on Instagram, Twitter, or anywhere else
@@ -122,7 +121,7 @@ Try these URLs to see different personalized experiences:
 
 - **All cards**: http://localhost:3001/
 - **User born Aug 2**: http://localhost:3001/?mmdd=0802
-- **User born June 11**: http://localhost:3001/?mmdd=0611  
+- **User born June 11**: http://localhost:3001/?mmdd=0611
 - **User born Dec 25**: http://localhost:3001/?mmdd=1225
 - **Share first card for Aug 2 user**: http://localhost:3001/share/0?mmdd=0802
 
@@ -133,6 +132,7 @@ Each birth date gets a completely different set of horoscope cards, but the same
 Want to make the horoscope text even more creative? You can integrate with a local LLM:
 
 ### Option 1: LM Studio (Recommended)
+
 ```bash
 # Install LM Studio and load gpt-oss-20b model
 # Enable the API server in LM Studio GUI
@@ -144,6 +144,7 @@ python3 cli/cards.py --features data/features.jsonl --rules rules/diagnostics.ya
 ```
 
 ### Option 2: Ollama
+
 ```bash
 # Install Ollama and pull the model
 brew install ollama
@@ -175,8 +176,9 @@ python3 cli/picker.py --mmdd 0802 --k 3 --total 15
 ```
 
 All tests pass, ensuring that:
+
 - Same birth date always gets same cards
-- Different birth dates get different cards  
+- Different birth dates get different cards
 - Metrics formatting is consistent
 - The full pipeline works end-to-end
 
@@ -214,21 +216,21 @@ espresso-horoscope-mcp/
 
 ## 🎯 For Judges & Contributors
 
-### What Makes This Impressive
+### What Makes This Fun (In a Weird Way)
 
-1. **Real Personalization**: Not just random text - each user gets a scientifically-based, personalized experience
-2. **Deterministic Yet Varied**: Same user always gets same results, but different users get completely different experiences
-3. **Full-Stack Integration**: Seamless pipeline from data generation to beautiful UI
-4. **Production Ready**: Comprehensive testing, error handling, and documentation
-5. **Extensible**: Easy to add new shot patterns, diagnostic rules, or cosmic themes
+1. **Real Personalization**: Not just random text - each user gets a scientifically-based, personalized experience that's actually meaningful
+2. **Deterministic Yet Varied**: Same user always gets same results, but different users get completely different experiences (it's like having your own cosmic fingerprint)
+3. **Full-Stack Integration**: Everything works together seamlessly from data generation to beautiful UI (no duct tape required!)
+4. **Actually Works**: Comprehensive testing, error handling, and documentation (because nothing's worse than a broken demo)
+5. **Extensible**: Easy to add new shot patterns, diagnostic rules, or cosmic themes (the universe is your oyster)
 
-### Key Technical Achievements
+### Key Technical Details
 
-- **Deterministic Hashing**: Consistent shot selection across CLI and UI
-- **Realistic Data Generation**: 15 diverse shots covering all brewing scenarios
-- **Modern Web Stack**: Next.js + TypeScript + Tailwind + shadcn/ui
-- **High-Quality Export**: Playwright-based image generation
-- **Comprehensive Testing**: Determinism, integration, and consistency tests
+- **Deterministic Hashing**: Consistent shot selection across CLI and UI (same birth date = same cosmic destiny)
+- **Realistic Data Generation**: 15 diverse shots covering all brewing scenarios (because real espresso is messy)
+- **Modern Web Stack**: Next.js + TypeScript + Tailwind + shadcn/ui (keeping up with the times)
+- **High-Quality Export**: Playwright-based image generation (for when you want to share your cosmic wisdom on social media)
+- **Comprehensive Testing**: Determinism, integration, and consistency tests (because we all make mistakes)
 
 ### How to Evaluate
 
@@ -249,6 +251,7 @@ Found a bug? Have an idea for a new cosmic theme? Want to add support for differ
 5. Submit a pull request
 
 I'm particularly interested in:
+
 - New diagnostic rules for different brewing issues
 - Additional cosmic themes and zodiac interpretations
 - Support for other espresso machine data formats
