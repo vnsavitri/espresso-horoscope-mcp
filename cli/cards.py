@@ -157,6 +157,40 @@ def get_seeded_variations(rule_id: str, flavour_banks: Dict[str, Any], seed: str
     return title, tagline
 
 
+def get_zodiac_info(birth_mmdd: str) -> tuple[str, str]:
+    """
+    Map birth date (MMDD) to zodiac sign and icon.
+    
+    Returns:
+        Tuple of (zodiac_name, zodiac_icon)
+    """
+    month = int(birth_mmdd[:2])
+    day = int(birth_mmdd[2:])
+    
+    # Zodiac date ranges with fun animal emojis
+    zodiac_dates = [
+        (1, 20, 2, 18, "Aquarius", "🐬"),
+        (2, 19, 3, 20, "Pisces", "🐟"),
+        (3, 21, 4, 19, "Aries", "🐏"),
+        (4, 20, 5, 20, "Taurus", "🐂"),
+        (5, 21, 6, 20, "Gemini", "👯‍♂️"),
+        (6, 21, 7, 22, "Cancer", "🦀"),
+        (7, 23, 8, 22, "Leo", "🦁"),
+        (8, 23, 9, 22, "Virgo", "🦋"),
+        (9, 23, 10, 22, "Libra", "🦢"),
+        (10, 23, 11, 21, "Scorpio", "🦂"),
+        (11, 22, 12, 21, "Sagittarius", "🏹"),
+        (12, 22, 1, 19, "Capricorn", "🐐")
+    ]
+    
+    for start_month, start_day, end_month, end_day, zodiac_name, zodiac_icon in zodiac_dates:
+        if (month == start_month and day >= start_day) or (month == end_month and day <= end_day):
+            return zodiac_name, zodiac_icon
+    
+    # Default fallback
+    return "Unknown", "☕"
+
+
 def get_personalized_flavour_line(
     features: Dict[str, Any], 
     rule_id: str, 
@@ -240,6 +274,9 @@ def generate_card(
     # Generate seed for this shot
     seed = generate_seed(shot_id, user_birth_mmdd or "0101", style_bank)
     
+    # Get zodiac information
+    zodiac_name, zodiac_icon = get_zodiac_info(user_birth_mmdd or "0101")
+    
     # Get seeded variations
     title, tagline = get_seeded_variations(rule_id, flavour_banks, seed)
     
@@ -302,6 +339,8 @@ def generate_card(
             "mantra": tagline,
             "rule_hit": rule_id,
             "seed": seed,
+            "zodiac": zodiac_name,
+            "zodiac_icon": zodiac_icon,
             "snapshot": {
                 "brew_ratio": brew_ratio,
                 "shot_time": shot_end_s,

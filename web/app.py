@@ -1531,7 +1531,7 @@ async def get_raw_cards():
 async def get_cards_json():
     """Get structured JSON data for horoscope cards."""
     try:
-        cards_file = Path("out/cards.json")
+        cards_file = Path(__file__).parent.parent / "out/cards.json"
         if not cards_file.exists():
             raise HTTPException(status_code=404, detail="Cards JSON file not found. Run the card generator first.")
         

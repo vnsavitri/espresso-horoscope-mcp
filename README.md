@@ -233,6 +233,42 @@ make record     # MCP JSON -> data/shots.jsonl
 make extract    # features -> data/features.jsonl
 make cards      # cards -> out/cards.md
 make check      # quick project checks (MCP + gpt-oss hooks)
+make export_images  # export card images (requires FastAPI server)
+
+---
+
+## Share images
+
+Export horoscope cards as high-quality images for social media sharing:
+
+```bash
+# 1) Start the FastAPI server (required)
+make web
+
+# 2) In another terminal, export images
+make export_images
+```
+
+**Output formats:**
+- **Portrait**: `webui/share/card_0.png` and `card_0.jpg` (768×1024)
+- **OG Format**: `webui/share/card_0_og.png` and `card_0_og.jpg` (1200×630)
+
+**Advanced usage:**
+```bash
+# Export in OG format only
+cd webui && npm run export:images -- --format=og
+
+# Clean up exported images
+cd webui && npm run clean:images
+
+# Show help
+cd webui && npm run export:images -- --help
+```
+
+**Requirements:**
+- FastAPI server running on `http://127.0.0.1:8000`
+- Next.js server running on `http://localhost:3000`
+- Playwright installed (done automatically via `postinstall`)
 
 ---
 
