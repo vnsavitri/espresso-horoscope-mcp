@@ -1,0 +1,30 @@
+{
+  "name": "espresso-horoscope-mcp",
+  "version": "1.0.0",
+  "description": "A Model Context Protocol server for coffee-based horoscope readings",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "mcp",
+    "horoscope",
+    "coffee",
+    "espresso",
+    "astrology"
+  ],
+  "author": "vnsavitri",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0",
+    "jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
