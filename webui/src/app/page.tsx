@@ -1,10 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import CardView from '@/components/CardView'
+import { filterCardsByBirthDate } from '@/lib/picker'
 
 interface Snapshot {
   brew_ratio: number
@@ -50,6 +52,8 @@ export default function Home() {
   const [cards, setCards] = useState<CardsResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+  const mmdd = searchParams.get('mmdd')
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -59,6 +63,15 @@ export default function Home() {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         const data = await response.json()
+        
+        // If mmdd parameter is provided, filter the cards
+        if (mmdd && mmdd.length === 4 && /^\d{4}$/.test(mmdd)) {
+          const filteredReadings = filterCardsByBirthDate(data.readings, mmdd, 3)
+          data.readings = filteredReadings
+          data.metadata.total_shots = filteredReadings.length
+          data.metadata.user_birth_mmdd = mmdd
+        }
+        
         setCards(data)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch cards')
@@ -68,7 +81,7 @@ export default function Home() {
     }
 
     fetchCards()
-  }, [])
+  }, [mmdd])
 
   if (loading) {
     return (
@@ -115,6 +128,11 @@ export default function Home() {
             {cards.metadata.total_shots} reading{cards.metadata.total_shots !== 1 ? 's' : ''} • 
             User: {cards.metadata.user_birth_mmdd} • 
             Style: {cards.metadata.style_bank}
+            {mmdd && (
+              <span className="ml-2 px-2 py-1 bg-primary/10 text-primary text-xs rounded">
+                Filtered for {mmdd}
+              </span>
+            )}
           </p>
         </div>
 

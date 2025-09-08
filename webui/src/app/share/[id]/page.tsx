@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'next/navigation'
 import CardView from '@/components/CardView'
+import { filterCardsByBirthDate } from '@/lib/picker'
 
 interface Snapshot {
   brew_ratio: number
@@ -53,6 +54,7 @@ export default function SharePage() {
 
   const cardId = params.id as string
   const format = searchParams.get('format')
+  const mmdd = searchParams.get('mmdd')
   const isOG = format === 'og'
 
   useEffect(() => {
@@ -64,12 +66,19 @@ export default function SharePage() {
         }
         const data: CardsResponse = await response.json()
         
-        const cardIndex = parseInt(cardId)
-        if (isNaN(cardIndex) || cardIndex < 0 || cardIndex >= data.readings.length) {
-          throw new Error(`Invalid card index: ${cardId}`)
+        let readings = data.readings
+        
+        // If mmdd parameter is provided, filter the cards first
+        if (mmdd && mmdd.length === 4 && /^\d{4}$/.test(mmdd)) {
+          readings = filterCardsByBirthDate(data.readings, mmdd, 3)
         }
         
-        setCard(data.readings[cardIndex])
+        const cardIndex = parseInt(cardId)
+        if (isNaN(cardIndex) || cardIndex < 0 || cardIndex >= readings.length) {
+          throw new Error(`Invalid card index: ${cardId} (available: 0-${readings.length - 1})`)
+        }
+        
+        setCard(readings[cardIndex])
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch card')
       } finally {
@@ -78,7 +87,7 @@ export default function SharePage() {
     }
 
     fetchCard()
-  }, [cardId])
+  }, [cardId, mmdd])
 
   if (loading) {
     return (
