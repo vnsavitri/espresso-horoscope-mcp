@@ -11,11 +11,14 @@ Built for the **gpt-oss hackathon**. The project **must apply `gpt-oss:20b`** (l
 - Extracts features (`features/extract.py`).
 - Applies rules (`rules/diagnostics.yaml`) to produce clear diagnostics with numbers.
 - Renders Markdown "horoscope" cards (`cli/cards.py`) and a beautiful web interface (`web/app.py`).
-- **NEW**: Personalized horoscope cards with birth date integration
-- **NEW**: Historical tracking and trend analysis
-- **NEW**: Style evolution recommendations
-- **NEW**: Community insights and comparisons
-- **NEW**: Beautiful shadcn-inspired UI with 5 interactive tabs
+- **NEW**: Personalized horoscope cards with birth date integration and fun animal emojis 🦁🐐🐟
+- **NEW**: Historical tracking and trend analysis (CLI tools)
+- **NEW**: Style evolution recommendations (CLI tools)
+- **NEW**: Community insights and comparisons (CLI tools)
+- **NEW**: Beautiful shadcn-inspired UI with clean single card view
+- **NEW**: Modern Next.js web UI with browser-friendly layout (768×1024)
+- **NEW**: High-quality image export for social media sharing
+- **NEW**: Comprehensive demo script for judges and users
 
 ---
 
@@ -46,37 +49,29 @@ make demo          # -> data/features.jsonl, out/cards.md
 # 4) preview
 make web           # open http://127.0.0.1:8000
 
-# 5) Optional: Add AI enhancement (see section below for Ollama or LM Studio setup)
+# 5) Modern Web UI (Next.js)
+cd webui && npm install && npm run dev  # open http://localhost:3000
+
+# 6) Optional: Add AI enhancement (see section below for Ollama or LM Studio setup)
 ```
 
-## 🎨 **NEW: Beautiful Web Interface**
+## 🎨 **NEW: Modern Web Interface & Features**
 
-The web interface now features a beautiful shadcn-inspired design with 5 interactive tabs:
+### **Next.js Web UI (Browser-Friendly)**
+- **Modern Design**: Clean, minimalist layout optimized for browser windows (768×1024)
+- **Fun Animal Emojis**: Zodiac signs represented with playful animal emojis (🦁 Leo, 🐐 Capricorn, 🐟 Pisces, etc.)
+- **Responsive Layout**: Perfect fit for regular browser windows without scrolling
+- **High-Quality Export**: Social media-ready images in both portrait and OG formats
 
-### **☕ Current Cards Tab**
+### **Enhanced Web Interface**
+The web interface features a beautiful shadcn-inspired design with a clean single card view:
+
+### **☕ Single Card View**
 - Your latest horoscope card with GPT-OSS enhanced text
 - Beautiful dashboard-style layout with metrics grid
 - Personalized content based on your birth date
-
-### **📊 Trends Tab**
-- Your coffee journey analytics
-- Consistency scores and reading patterns
-- Personalized insights based on your history
-
-### **📅 Timeline Tab**
-- Visual timeline of your readings
-- Reading history and progression
-- Style evolution over time
-
-### **🎭 Style Tab**
-- Style evolution recommendations
-- Seasonal and growth suggestions
-- Confidence scores for recommendations
-
-### **🌟 Community Tab**
-- Community insights and comparisons
-- Global statistics and benchmarks
-- See how you compare to other coffee enthusiasts
+- Fun animal emojis representing your zodiac sign
+- Clean, minimalist design optimized for browser windows
 
 ### **Running the Web Interface**
 
@@ -236,6 +231,33 @@ make check      # quick project checks (MCP + gpt-oss hooks)
 make export_images  # export card images (requires FastAPI server)
 
 ---
+
+## 🎬 **Demo Script for Judges**
+
+A comprehensive demo script is available at `tools/demo_script.md` that walks through:
+
+1. **Complete Workflow**: Data processing → Card generation → Web UI → Image export
+2. **LM Studio Integration**: How to demonstrate AI enhancement with fixed numbers
+3. **Birth Date Variations**: Testing different zodiac signs and animal emojis
+4. **Troubleshooting**: Common issues and verification commands
+5. **Demo Checklist**: Complete verification list for judges
+
+**Quick Demo Commands:**
+```bash
+# 1. Generate cards
+make demo
+
+# 2. Start web interface
+make web
+
+# 3. Export images
+make export_images
+
+# 4. Test AI enhancement (with LM Studio running)
+export OPENAI_BASE_URL="http://localhost:1234/v1"
+export OPENAI_API_KEY="lm-studio"
+python3 cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md --style gptoss --birth-date 0802
+```
 
 ## Share images
 
