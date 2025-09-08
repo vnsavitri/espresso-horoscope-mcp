@@ -12,6 +12,7 @@ from typing import Optional, Dict, Any, List
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 
 def markdown_to_html(markdown_text: str) -> str:
@@ -1487,6 +1488,15 @@ app = FastAPI(
     version="0.1.0"
 )
 
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8000", "http://127.0.0.1:8000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.get("/", response_class=HTMLResponse)
 async def read_cards():
@@ -1515,6 +1525,34 @@ async def get_raw_cards():
         return {"content": markdown_content}
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
+
+
+@app.get("/cards.json")
+async def get_cards_json():
+    """Get structured JSON data for horoscope cards."""
+    try:
+        cards_file = Path("out/cards.json")
+        if not cards_file.exists():
+            raise HTTPException(status_code=404, detail="Cards JSON file not found. Run the card generator first.")
+        
+        with open(cards_file, 'r') as f:
+            cards_data = json.load(f)
+        
+        return JSONResponse(
+            content=cards_data,
+            headers={
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=500, detail=f"Invalid JSON in cards file: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading cards JSON: {str(e)}")
 
 
 @app.get("/history")

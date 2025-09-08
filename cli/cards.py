@@ -476,12 +476,29 @@ Examples:
             f.write(f"*User: {user_birth_mmdd} | Style: {style_bank}*\n\n")
             f.writelines(cards_content)
         
-        # Write JSON output if requested
+        # Write JSON output (always write to out/cards.json, plus custom path if specified)
+        json_output_path = Path("out/cards.json")
+        json_output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        with open(json_output_path, 'w') as f:
+            json.dump({
+                "metadata": {
+                    "generated_at": features[0].get("generation_date", "unknown"),
+                    "user_birth_mmdd": user_birth_mmdd,
+                    "style_bank": style_bank,
+                    "total_shots": len(features)
+                },
+                "readings": json_data_list
+            }, f, indent=2)
+        
+        print(f"Generated structured data in {json_output_path}", file=sys.stderr)
+        
+        # Also write to custom path if specified
         if args.json_out:
-            json_output_path = Path(args.json_out)
-            json_output_path.parent.mkdir(parents=True, exist_ok=True)
+            custom_json_path = Path(args.json_out)
+            custom_json_path.parent.mkdir(parents=True, exist_ok=True)
             
-            with open(args.json_out, 'w') as f:
+            with open(custom_json_path, 'w') as f:
                 json.dump({
                     "metadata": {
                         "generated_at": features[0].get("generation_date", "unknown"),
