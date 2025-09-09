@@ -3,6 +3,7 @@ PY=/opt/homebrew/bin/python3.12
 record: ; $(PY) tools/record_from_mcp.py sample/mcp_shots/*.json -o data/shots.jsonl
 extract: data/shots.jsonl ; $(PY) features/extract.py data/shots.jsonl -o data/features.jsonl
 cards: data/features.jsonl ; $(PY) cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md
+cards_png: data/features.jsonl ; $(PY) cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md --png --png-dir out/png_cards
 web: ; $(PY) web/app.py
 demo: record extract cards ; @echo "Demo built -> out/cards.md"
 demo_user:
@@ -10,6 +11,11 @@ demo_user:
 	@echo "🎯 Creating demo deck for birth date $(MMDD)..."
 	$(PY) tools/make_demo_deck.py --mmdd $(MMDD) --k 3
 	@echo "🎉 Demo deck created -> out/cards.md"
+demo_user_png:
+	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=0802 make demo_user_png"; exit 1; fi
+	@echo "🎯 Creating demo deck with PNG cards for birth date $(MMDD)..."
+	$(PY) tools/make_demo_deck.py --mmdd $(MMDD) --k 3 --png --png-dir out/png_cards
+	@echo "🎉 Demo deck with PNG cards created -> out/cards.md + out/png_cards/"
 export_images:
 	@echo "Checking FastAPI server on 127.0.0.1:8000..."
 	@curl -s http://127.0.0.1:8000/cards.json >/dev/null || (echo "❌ FastAPI server not running on 127.0.0.1:8000. Start with: make web"; exit 1)

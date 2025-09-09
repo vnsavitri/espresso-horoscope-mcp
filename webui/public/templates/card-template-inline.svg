@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="cardRoot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 1024" width="768" height="1024">
+  <!-- Card background -->
+  <rect x="0" y="0" width="768" height="1024" rx="16" fill="#141b3a"/>
+  <!-- hairline border -->
+  <rect x="10" y="10" width="748" height="1004" rx="14" fill="none" stroke="rgba(255,255,255,0.08)"/>
+
+  <!-- Decorative stars -->
+  <g opacity="0.9">
+    <circle cx="160" cy="160" r="18" fill="#9C84F4"/>
+    <circle cx="290" cy="120" r="10" fill="#9C84F4"/>
+    <circle cx="560" cy="170" r="24" fill="#9C84F4"/>
+    <circle cx="640" cy="360" r="22" fill="#9C84F4"/>
+    <circle cx="220" cy="740" r="18" fill="#9C84F4"/>
+    <circle cx="560" cy="820" r="26" fill="#9C84F4"/>
+    <circle cx="200" cy="480" r="10" fill="#9C84F4"/>
+    <circle cx="470" cy="420" r="14" fill="#9C84F4"/>
+  </g>
+
+  <!-- SIGN ICON SLOT -->
+  <g id="signIconSlot" transform="translate(319.74, 130)">
+    <!-- This will be replaced with the actual sign SVG -->
+  </g>
+
+  <!-- SIGN LABEL -->
+  <text id="signLabel" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="352" font-size="28" letter-spacing="3" text-anchor="middle">LIBRA</text>
+
+  <!-- TITLE -->
+  <text id="title" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="440" font-size="48" font-weight="500" text-anchor="middle">Lightning Brew</text>
+
+  <!-- SUBTITLE -->
+  <text id="subtitle" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="470" font-size="22" font-style="italic" opacity="0.8" text-anchor="middle">"Quick as cosmic dust."</text>
+
+  <!-- HEADLINE STATS -->
+  <text id="statRatio" fill="#E6E6F0" font-family="Arial, sans-serif" x="220" y="540" font-size="28" font-weight="600" text-anchor="middle">1.50:1</text>
+  <text id="statTime" fill="#E6E6F0" font-family="Arial, sans-serif" x="320" y="540" font-size="28" font-weight="600" text-anchor="middle">18s</text>
+  <text id="statPressure" fill="#E6E6F0" font-family="Arial, sans-serif" x="420" y="540" font-size="28" font-weight="600" text-anchor="middle">6.9 bar</text>
+  <text id="statTemp" fill="#E6E6F0" font-family="Arial, sans-serif" x="520" y="540" font-size="28" font-weight="600" text-anchor="middle">92.1°C</text>
+  <text id="statEY" fill="#E6E6F0" font-family="Arial, sans-serif" x="620" y="540" font-size="28" font-weight="600" text-anchor="middle">0.00</text>
+
+  <!-- ADVICE BULLETS -->
+  <text id="bullets" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="620" font-size="20" text-anchor="middle">
+    <tspan x="384" dy="0">• Grind finer to increase extraction time</tspan>
+    <tspan x="384" dy="30">• Increase dose slightly (0.5-1g)</tspan>
+    <tspan x="384" dy="30">• Check for channeling or uneven tamping</tspan>
+  </text>
+
+  <!-- NARRATIVE MESSAGE -->
+  <text id="narrative" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="750" font-size="20" text-anchor="middle">
+    <tspan x="384" dy="0">Your shot flows like the morning sun - bright and quick,</tspan>
+    <tspan x="384" dy="25">but lacking the deep warmth of midday.</tspan>
+  </text>
+
+  <!-- META INFO -->
+  <text id="meta" fill="#bdac82" font-family="Arial, sans-serif" x="384" y="850" font-size="16" text-anchor="middle">seed: cbc0ae0a • rule: under_extracted_fast • severity: fast</text>
+
+  <!-- FOOTER -->
+  <text id="footer" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="950" font-size="16" text-anchor="middle">Espresso Horoscope</text>
+</svg>

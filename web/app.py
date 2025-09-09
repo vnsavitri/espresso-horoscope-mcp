@@ -1555,6 +1555,51 @@ async def get_cards_json():
         raise HTTPException(status_code=500, detail=f"Error loading cards JSON: {str(e)}")
 
 
+@app.get("/generate_cards")
+async def generate_cards_for_date(mmdd: str):
+    """Generate new horoscope cards for a specific birth date."""
+    try:
+        import subprocess
+        import sys
+        
+        # Validate mmdd format
+        if not mmdd or len(mmdd) != 4 or not mmdd.isdigit():
+            raise HTTPException(status_code=400, detail="Invalid birth date format. Use MMDD format (e.g., 1021)")
+        
+        # Run the demo deck generator for this specific date
+        project_root = Path(__file__).parent.parent
+        result = subprocess.run([
+            sys.executable, "tools/make_demo_deck.py", 
+            "--mmdd", mmdd, 
+            "--k", "3"
+        ], cwd=project_root, capture_output=True, text=True)
+        
+        if result.returncode != 0:
+            raise HTTPException(status_code=500, detail=f"Failed to generate cards: {result.stderr}")
+        
+        # Load the generated cards
+        cards_file = project_root / "out/cards.json"
+        if not cards_file.exists():
+            raise HTTPException(status_code=500, detail="Cards were generated but file not found")
+        
+        with open(cards_file, 'r') as f:
+            cards_data = json.load(f)
+        
+        return JSONResponse(
+            content=cards_data,
+            headers={
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
+    except subprocess.CalledProcessError as e:
+        raise HTTPException(status_code=500, detail=f"Error generating cards: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating cards: {str(e)}")
+
+
 @app.get("/history")
 async def get_history(user_id: str = "default"):
     """Get reading history for a user."""

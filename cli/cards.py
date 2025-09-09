@@ -12,6 +12,7 @@ import os
 import re
 import sys
 import yaml
+import requests
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
 
@@ -357,6 +358,79 @@ def generate_card(
     return card, json_data
 
 
+def generate_png_card(json_data: Dict[str, Any], output_dir: Path = None) -> Optional[bytes]:
+    """
+    Generate a PNG card by calling the Next.js API.
+    
+    Args:
+        json_data: The card data from generate_card()
+        output_dir: Optional directory to save the PNG file
+        
+    Returns:
+        PNG bytes if successful, None if failed
+    """
+    try:
+        # Extract data for API payload
+        card_data = json_data["card"]
+        snapshot = card_data["snapshot"]
+        
+        # Map zodiac icon to sign name (remove emoji, get sign name)
+        zodiac_icon = card_data.get("zodiac_icon", "☕")
+        sign_name = card_data.get("zodiac", "unknown").lower()
+        
+        # Create API payload
+        payload = {
+            "sign": sign_name,
+            "signLabel": card_data.get("zodiac", "UNKNOWN").upper(),
+            "title": card_data.get("title", "Cosmic Reading"),
+            "subtitle": f'"{card_data.get("mantra", "Brew with intention.")}"',
+            "metrics": {
+                "ratio": f"{snapshot['brew_ratio']:.2f}:1",
+                "time": f"{snapshot['shot_time']:.0f}s",
+                "pressure": f"{snapshot['peak_pressure']:.1f} bar",
+                "temp": f"{snapshot['temp_avg']:.1f} °C",
+                "rdt": f"{snapshot['channeling']:.2f}"
+            },
+            "bullets": card_data.get("advice", [])[:3],  # Limit to 3 bullets
+            "message": card_data.get("template", "Your espresso tells a story..."),
+            "meta": f"seed: {card_data.get('seed', 'unknown')[:8]} • rule: {card_data.get('rule_hit', 'unknown')} • severity: {card_data.get('rule_hit', 'unknown')}",
+            "footer": "Espresso Horoscope",
+            "format": "png"
+        }
+        
+        # Call the Next.js API
+        api_url = "http://localhost:3000/api/card"
+        response = requests.post(api_url, json=payload, timeout=30)
+        
+        if response.status_code == 200:
+            png_data = response.content
+            
+            # Save to file if output directory specified
+            if output_dir:
+                output_dir.mkdir(parents=True, exist_ok=True)
+                shot_id = json_data.get("shot_id", "unknown")
+                filename = f"card_{shot_id}.png"
+                filepath = output_dir / filename
+                
+                with open(filepath, 'wb') as f:
+                    f.write(png_data)
+                
+                print(f"Saved PNG card: {filepath}", file=sys.stderr)
+            
+            return png_data
+        else:
+            print(f"API error: {response.status_code} - {response.text}", file=sys.stderr)
+            return None
+            
+    except requests.exceptions.ConnectionError:
+        print("Warning: Could not connect to Next.js API (http://localhost:3000/api/card)", file=sys.stderr)
+        print("Make sure the Next.js server is running with: npm run dev", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"Error generating PNG card: {e}", file=sys.stderr)
+        return None
+
+
 def main():
     """CLI interface using argparse."""
     parser = argparse.ArgumentParser(
@@ -420,6 +494,18 @@ Examples:
         choices=['chill', 'punchy', 'nerdy', 'mystical'],
         default='chill',
         help='Style preference for tone variations (default: chill)'
+    )
+    
+    parser.add_argument(
+        '--png',
+        action='store_true',
+        help='Generate PNG cards using Next.js API (requires server running)'
+    )
+    
+    parser.add_argument(
+        '--png-dir',
+        default='out/cards',
+        help='Directory to save PNG cards (default: out/cards)'
     )
     
     parser.add_argument(
@@ -507,6 +593,17 @@ Examples:
                 json_data["card"]["title"],
                 json_data["card"]["emoji"]
             )
+            
+            # Generate PNG card if requested
+            if args.png:
+                png_dir = Path(args.png_dir)
+                png_data = generate_png_card(json_data, png_dir)
+                if png_data:
+                    json_data["png_generated"] = True
+                    json_data["png_path"] = str(png_dir / f"card_{json_data['shot_id']}.png")
+                else:
+                    json_data["png_generated"] = False
+                    json_data["png_error"] = "Failed to generate PNG"
         
         # Write markdown output
         with open(args.out, 'w') as f:
@@ -550,7 +647,13 @@ Examples:
             
             print(f"Generated structured data in {args.json_out}", file=sys.stderr)
         
-        print(f"Generated {len(features)} horoscope cards in {args.out}", file=sys.stderr)
+        # Summary
+        print(f"✅ Generated {len(features)} horoscope cards in {args.out}", file=sys.stderr)
+        if args.png:
+            png_count = sum(1 for data in json_data_list if data.get("png_generated", False))
+            print(f"🖼️  Generated {png_count}/{len(features)} PNG cards in {args.png_dir}", file=sys.stderr)
+            if png_count < len(features):
+                print("⚠️  Some PNG cards failed to generate. Check Next.js server is running.", file=sys.stderr)
         
         # Show reading trends if available
         trends = analyze_reading_trends("default")

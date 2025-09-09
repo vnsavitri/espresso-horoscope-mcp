@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="cardRoot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 1024" width="768" height="1024">
+  <!-- Colors -->
+  <defs>
+    <style>
+      :root {
+        --bg: #1c223f;         /* page background (outside the card) */
+        --card: #1c223f;       /* card background */
+        --text: #E6E6F0;       /* main text */
+        --accent: #bdac82;     /* gold accent */
+        --star: #9C84F4;       /* purple stars */
+      }
+      .text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+      .small { font-size: 16px; }
+      .body { font-size: 20px; }
+      .stat { font-size: 28px; font-weight: 600; }
+      .title { font-size: 48px; font-weight: 500; }
+      .subtitle { font-size: 22px; font-style: italic; opacity: .8; }
+    </style>
+    <!-- Star shape (Monument Valley vibe) -->
+    <symbol id="mvStar" viewBox="-1 -1 2 2" overflow="visible">
+      <path d="M0 -1 Q .35 -.35 1 0 Q .35 .35 0 1 Q -.35 .35 -1 0 Q -.35 -.35 0 -1Z" fill="var(--star)"/>
+    </symbol>
+  </defs>
+
+  <!-- Card background -->
+  <rect x="0" y="0" width="768" height="1024" rx="16" fill="var(--card)"/>
+  <!-- hairline border like PNG -->
+  <rect x="10" y="10" width="748" height="1004" rx="14" fill="none" stroke="rgba(255,255,255,0.08)"/>
+
+  <!-- Decorative stars (positions tuned to PNG) -->
+  <g id="stars" opacity="0.9">
+    <use href="#mvStar" transform="translate(160 160) scale(18)"/>
+    <use href="#mvStar" transform="translate(290 120) scale(10)"/>
+    <use href="#mvStar" transform="translate(560 170) scale(24)"/>
+    <use href="#mvStar" transform="translate(640 360) scale(22)"/>
+    <use href="#mvStar" transform="translate(220 740) scale(18)"/>
+    <use href="#mvStar" transform="translate(560 820) scale(26)"/>
+    <use href="#mvStar" transform="translate(200 480) scale(10)"/>
+    <use href="#mvStar" transform="translate(470 420) scale(14)"/>
+  </g>
+
+  <!-- SIGN ICON SLOT (exact 128.5201 x 198.64) -->
+  <!-- Position tuned to match PNG. The group is the frame you inject into. -->
+  <g id="signIconSlot" transform="translate(319.74 130)">
+    <!-- helper rect hidden: uncomment while aligning -->
+    <!-- <rect width="128.5201" height="198.64" fill="none" stroke="#fff" opacity=".15"/> -->
+    <!-- Place your sign SVG paths here (ensure they fit the slot or scale within another <g>) -->
+  </g>
+
+  <!-- SIGN LABEL -->
+  <text id="signLabel" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="360" font-size="24" letter-spacing="2" text-anchor="middle">ARIES</text>
+
+  <!-- TITLE -->
+  <text id="title" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="420" font-size="42" font-weight="600" text-anchor="middle">Celestial Perfection</text>
+
+  <!-- SUBTITLE -->
+  <text id="subtitle" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="450" font-size="20" font-style="italic" opacity="0.9" text-anchor="middle">"Balance achieved."</text>
+
+  <!-- HEADLINE STATS (left→right like PNG) -->
+  <text id="statRatio" fill="#E6E6F0" font-family="Arial, sans-serif" x="150" y="520" font-size="24" font-weight="600" text-anchor="middle">2.10:1</text>
+  <text id="statTime" fill="#E6E6F0" font-family="Arial, sans-serif" x="250" y="520" font-size="24" font-weight="600" text-anchor="middle">28s</text>
+  <text id="statPressure" fill="#E6E6F0" font-family="Arial, sans-serif" x="350" y="520" font-size="24" font-weight="600" text-anchor="middle">8.4 bar</text>
+  <text id="statTemp" fill="#E6E6F0" font-family="Arial, sans-serif" x="450" y="520" font-size="24" font-weight="600" text-anchor="middle">91.8 °C</text>
+  <text id="statEY" fill="#E6E6F0" font-family="Arial, sans-serif" x="550" y="520" font-size="24" font-weight="600" text-anchor="middle">0.00</text>
+
+  <!-- BULLETS (multiline center) -->
+  <text id="bullets" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="580" font-size="18" text-anchor="middle">
+    <tspan x="384" dy="0">• Excellent shot parameters!</tspan>
+    <tspan x="384" dy="22">• Maintain current grind setting</tspan>
+    <tspan x="384" dy="22">• Keep consistent puck preparation</tspan>
+  </text>
+
+  <!-- NARRATIVE (gold accent, two lines like PNG) -->
+  <text id="narrative" x="384" y="720" text-anchor="middle" fill="#bdac82" font-family="Arial, sans-serif" font-size="18">
+    <tspan x="384" dy="0">Your Libra energy evolves through this gentle nebula,</tspan>
+    <tspan x="384" dy="22">creating cosmic harmony in every drop.</tspan>
+  </text>
+
+  <!-- META ROW -->
+  <text id="meta" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="780" font-size="14" text-anchor="middle" opacity="0.7">
+    seed: 816bb915 • rule: sweet_spot • severity: sweet_spot
+  </text>
+
+  <!-- FOOTER -->
+  <text id="footer" fill="#E6E6F0" font-family="Arial, sans-serif" x="384" y="950" font-size="16" text-anchor="middle" opacity="0.8">
+    Espresso Horoscope
+  </text>
+</svg>

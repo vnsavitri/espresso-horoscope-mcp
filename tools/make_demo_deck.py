@@ -45,7 +45,7 @@ def get_user_birth_date() -> str:
         print("Invalid format. Please enter MMDD (e.g., 0802 for August 2nd)")
 
 
-def create_demo_deck(mmdd: str, k: int = 3) -> None:
+def create_demo_deck(mmdd: str, k: int = 3, generate_png: bool = False, png_dir: str = "out/png_cards") -> None:
     """
     Create a demo deck for a specific user.
     
@@ -91,15 +91,23 @@ def create_demo_deck(mmdd: str, k: int = 3) -> None:
     # Step 4: Generate cards
     print("🎨 Generating horoscope cards...")
     try:
-        result = subprocess.run([
+        cmd = [
             sys.executable, "cli/cards.py",
             "--features", "data/features.jsonl",
             "--rules", "rules/diagnostics.yaml", 
             "--astro", "content/astro_map.yaml",
             "--out", "out/cards.md",
             "--birth-date", mmdd
-        ], capture_output=True, text=True, check=True)
+        ]
+        
+        # Add PNG generation arguments if requested
+        if generate_png:
+            cmd.extend(["--png", "--png-dir", png_dir])
+        
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         print("✅ Cards generated successfully")
+        if generate_png:
+            print(f"🖼️  PNG cards saved to {png_dir}/")
     except subprocess.CalledProcessError as e:
         print(f"❌ Error generating cards: {e}")
         print(f"stderr: {e.stderr}")
@@ -126,6 +134,8 @@ def main():
     parser = argparse.ArgumentParser(description="Create a user-specific demo deck")
     parser.add_argument("--mmdd", help="Birth date in MMDD format (if not provided, will prompt)")
     parser.add_argument("--k", type=int, default=3, help="Number of shots to include (default: 3)")
+    parser.add_argument("--png", action="store_true", help="Generate PNG cards using Next.js API")
+    parser.add_argument("--png-dir", default="out/png_cards", help="Directory to save PNG cards (default: out/png_cards)")
     
     args = parser.parse_args()
     
@@ -135,7 +145,7 @@ def main():
         mmdd = get_user_birth_date()
     
     # Create demo deck
-    create_demo_deck(mmdd, args.k)
+    create_demo_deck(mmdd, args.k, args.png, args.png_dir)
 
 
 if __name__ == "__main__":
