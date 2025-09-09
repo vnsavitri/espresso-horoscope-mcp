@@ -412,13 +412,13 @@ Respond with ONLY the style description, no other text.
             f"{base_url}/chat/completions",
             headers={"Content-Type": "application/json"},
             json={
-                "model": "gpt-oss:20b",
+                "model": "openai/gpt-oss-20b",
                 "messages": [
                     {"role": "system", "content": "You are a cosmic coffee oracle. Create unique, mystical style descriptions."},
                     {"role": "user", "content": prompt}
                 ],
                 "temperature": 0.8,
-                "max_tokens": 50
+                "max_tokens": 100
             },
             timeout=10
         )

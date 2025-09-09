@@ -71,13 +71,13 @@ Respond with ONLY the reading, no other text.
             f"{base_url}/chat/completions",
             headers={"Content-Type": "application/json"},
             json={
-                "model": "gpt-oss:20b",
+                "model": "openai/gpt-oss-20b",
                 "messages": [
                     {"role": "system", "content": "You are a cosmic coffee oracle. Create unique, poetic readings for espresso shots. Be creative and engaging, avoiding generic phrases."},
                     {"role": "user", "content": prompt}
                 ],
                 "temperature": 0.9,
-                "max_tokens": 150
+                "max_tokens": 200
             },
             timeout=15
         )
