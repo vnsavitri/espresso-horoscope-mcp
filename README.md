@@ -8,10 +8,11 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 
 ## 🏆 OpenAI Open Model Hackathon Entry
 
-**Category**: Best Local Agent + Wildcard  
+**Category**: Best Local Agent + Wildcard
 **Repository**: [github.com/vnsavitri/espresso-horoscope-mcp](https://github.com/vnsavitri/espresso-horoscope-mcp)
 
 ### 🎬 Demo Instructions
+
 1. **Start LM Studio** with `gpt-oss-20b` model loaded
 2. **Set environment**: `export OPENAI_BASE_URL="http://localhost:1234/v1"`
 3. **Start backend**: `uvicorn web.app:app --reload`
@@ -21,17 +22,20 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 7. **Generate horoscope** and see GPT-OSS in action!
 
 ### ✈️ **Airplane Mode Demo** (Proves Offline Capability)
+
 1. **Turn off Wi-Fi** to prove offline inference
 2. **Generate a horoscope card** (it will still work!)
 3. **Show LM Studio console** streaming tokens
 4. **Turn Wi-Fi back on**
 
 ### 🎯 **Determinism Demo** (Shows Technical Sophistication)
+
 1. **Same birth date twice** → identical headlines
-2. **Change time of day** → style shifts  
+2. **Change time of day** → style shifts
 3. **Change date** → new seed, different card
 
 ### 🤖 GPT-OSS Integration
+
 - **Local AI**: Runs completely offline via LM Studio
 - **Dynamic Styles**: AI generates unique style names (`dusk-flow`, `stellar-pulse`)
 - **Creative Readings**: Poetic descriptions instead of generic templates
@@ -52,25 +56,33 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 ## ✨ Cool Features
 
 ### 🎭 Dynamic Style Magic
+
 Each horoscope gets a unique cosmic personality:
+
 - **🦢 Libra • nebula-balance** - Balanced, harmonious vibes
-- **👯‍♂️ Gemini • early-pulse** - Quick, energetic morning energy  
+- **👯‍♂️ Gemini • early-pulse** - Quick, energetic morning energy
 - **🦁 Leo • dawn-rhythm** - Powerful, confident cosmic flow
 
 ### 📖 Creative Reading System
+
 No more boring "COSMIC PERFECTION ACHIEVED" - every reading is a unique cosmic poem:
+
 - *"Like a comet streaking across the night sky, your shot blazes through in just 16 seconds"*
 - *"Your shot battles against cosmic resistance, like thunder struggling through dense clouds"*
 - *"Your shot dances like a synchronized constellation, finding perfect balance"*
 
 ### 🕐 Time-Based Cosmic Phases
+
 The same shot feels different depending on when you pull it:
+
 - **Morning**: Dawn-pulse, rising-energy, morning-rhythm
-- **Evening**: Dusk-flow, evening-harmony, setting-grace  
+- **Evening**: Dusk-flow, evening-harmony, setting-grace
 - **Night**: Stellar-deep, night-rhythm, cosmic-dream
 
 ### 🎯 Shot-Specific Personality
+
 Your espresso's characteristics influence its cosmic style:
+
 - **Fast shots** → early-pulse, stellar-pulse, cosmic-rush
 - **Slow shots** → lunar-flow, stellar-drift, cosmic-patience
 - **Powerful shots** → stellar-force, cosmic-power, nebula-strength
@@ -183,7 +195,7 @@ The system expects shot data in JSONL format with the following structure:
 - **Deterministic Results**: Same date always produces the same cards
 - **Varied Content**: Different dates produce different readings and advice
 
-### Beautiful Web Interface
+### Pretty (sorta) Web Interface
 
 - **Cosmic Design**: Purple-blue gradient background with glass morphism
 - **Responsive Layout**: Works on desktop and mobile
@@ -246,6 +258,7 @@ make clean
 ### Dynamic Style Generation
 
 The system creates unique cosmic personalities by combining:
+
 - **Coffee Profile Analysis**: Extracts personality from shot characteristics
 - **Daily Mood Calculation**: Cosmic energy based on birth date and current date
 - **Shot-Specific Variation**: Fast/slow/powerful/gentle shots get different styles
@@ -269,6 +282,7 @@ The system integrates with **GPT-OSS (Open Source GPT)** for enhanced creativity
 - **Offline Capable**: All AI processing happens locally
 
 **Setup GPT-OSS:**
+
 1. Install LM Studio or Ollama
 2. Download `gpt-oss:20b` model
 3. **For LM Studio**: Load the model and start the local server
