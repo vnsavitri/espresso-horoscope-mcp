@@ -7,3 +7,5 @@ out/
 .DS_Store
 CURSOR.md
 doc-reference/
+tools/hackathon_demo_script.md
+tools/quick_demo.sh
