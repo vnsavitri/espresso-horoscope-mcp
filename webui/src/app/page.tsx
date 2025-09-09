@@ -246,7 +246,7 @@ export default function Home() {
 
         <div className="space-y-8">
           {cards.readings.map((reading, index) => (
-            <Card key={reading.shot_id} className="bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+            <Card key={`${reading.shot_id}-${reading.timestamp}`} className="bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
               <CardContent className="p-0">
                 {/* Card Header with Zodiac */}
                 <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-center">
