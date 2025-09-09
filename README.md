@@ -65,13 +65,8 @@ cd webui && npm run dev
 4. **View cards**: See 3 personalized horoscope cards with cosmic guidance
 5. **Try different dates**: Click "Try Different Date" to explore different zodiac signs
 
-#### Demo Birth Dates to Try
-- `1021` - Libra (October 21st)
-- `0611` - Gemini (June 11th) 
-- `0301` - Pisces (March 1st)
-- `0701` - Cancer (July 1st)
-- `1201` - Sagittarius (December 1st)
-- `0802` - Leo (August 2nd)
+#### Experience the Magic
+Enter your birth date in MMDD format (e.g., `1021` for October 21st) and discover your personalized cosmic coffee destiny. Each birth date generates unique horoscope cards with your zodiac sign and personalized guidance.
 
 ### Scenario 2: Gaggiuino Machine Integration
 
