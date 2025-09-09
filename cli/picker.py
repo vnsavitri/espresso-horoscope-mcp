@@ -11,7 +11,7 @@ import random
 from typing import List
 
 
-def pick_indices(n_total: int, mmdd: str, k: int = 3) -> List[int]:
+def pick_indices(n_total: int, mmdd: str, k: int = 3, time_variant: str = None) -> List[int]:
     """
     Pick k unique indices from range [0, n_total) using deterministic hashing.
     
@@ -19,6 +19,7 @@ def pick_indices(n_total: int, mmdd: str, k: int = 3) -> List[int]:
         n_total: Total number of shots available
         mmdd: Birth date in MMDD format (e.g., "0802")
         k: Number of shots to pick (default 3)
+        time_variant: Optional time-based variant (e.g., "2025-09-09-14:30") for variation
     
     Returns:
         List of k unique indices
@@ -30,8 +31,14 @@ def pick_indices(n_total: int, mmdd: str, k: int = 3) -> List[int]:
         # If we want more shots than available, return all indices
         return list(range(n_total))
     
-    # Create deterministic seed from birth date
-    seed_bytes = hashlib.sha256(mmdd.encode('utf-8')).digest()
+    # Create deterministic seed from birth date + time variant
+    if time_variant:
+        seed_input = f"{mmdd}-{time_variant}"
+    else:
+        # Fallback to just birth date for backward compatibility
+        seed_input = mmdd
+    
+    seed_bytes = hashlib.sha256(seed_input.encode('utf-8')).digest()
     seed = int.from_bytes(seed_bytes[:8], byteorder='big')
     
     # Use seeded random to ensure reproducibility
@@ -43,14 +50,15 @@ def pick_indices(n_total: int, mmdd: str, k: int = 3) -> List[int]:
     return sorted(indices)
 
 
-def pick_shots_from_palette(palette_file: str, mmdd: str, k: int = 3) -> List[dict]:
+def pick_shots_from_palette(palette_file: str, mmdd: str, k: int = 3, time_variant: str = None) -> List[dict]:
     """
-    Pick k shots from a palette file based on birth date.
+    Pick k shots from a palette file based on birth date and optional time variant.
     
     Args:
         palette_file: Path to JSONL file containing shot palette
         mmdd: Birth date in MMDD format
         k: Number of shots to pick
+        time_variant: Optional time-based variant for variation
     
     Returns:
         List of selected shot data
@@ -66,7 +74,7 @@ def pick_shots_from_palette(palette_file: str, mmdd: str, k: int = 3) -> List[di
                 shots.append(json.loads(line))
     
     # Pick indices
-    indices = pick_indices(len(shots), mmdd, k)
+    indices = pick_indices(len(shots), mmdd, k, time_variant)
     
     # Return selected shots
     return [shots[i] for i in indices]

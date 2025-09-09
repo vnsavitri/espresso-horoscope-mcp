@@ -1606,11 +1606,16 @@ async def generate_cards_for_date(mmdd: str):
         # Load existing user cards
         user_cards = load_user_cards(mmdd)
         
-        # Run the demo deck generator for this specific date
+        # Generate a time variant for shot selection variation
+        current_time = datetime.now()
+        time_variant = current_time.strftime("%Y-%m-%d-%H:%M")
+        
+        # Run the demo deck generator for this specific date with time variant
         project_root = Path(__file__).parent.parent
         result = subprocess.run([
             sys.executable, "tools/make_demo_deck.py", 
-            "--mmdd", mmdd
+            "--mmdd", mmdd,
+            "--time-variant", time_variant
         ], cwd=project_root, capture_output=True, text=True)
         
         if result.returncode != 0:

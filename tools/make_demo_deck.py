@@ -45,7 +45,7 @@ def get_user_birth_date() -> str:
         print("Invalid format. Please enter MMDD (e.g., 0802 for August 2nd)")
 
 
-def create_demo_deck(mmdd: str, k: int = 3, generate_png: bool = False, png_dir: str = "out/png_cards") -> None:
+def create_demo_deck(mmdd: str, k: int = 3, generate_png: bool = False, png_dir: str = "out/png_cards", time_variant: str = None) -> None:
     """
     Create a demo deck for a specific user.
     
@@ -62,7 +62,7 @@ def create_demo_deck(mmdd: str, k: int = 3, generate_png: bool = False, png_dir:
         print("Run 'python3 tools/simulate_shots.py' first to generate the palette")
         return
     
-    selected_shots = pick_shots_from_palette(palette_file, mmdd, k)
+    selected_shots = pick_shots_from_palette(palette_file, mmdd, k, time_variant)
     print(f"📊 Selected {len(selected_shots)} shots from palette")
     
     # Step 2: Write selected shots to data/shots.jsonl
@@ -136,6 +136,7 @@ def main():
     parser.add_argument("--k", type=int, default=1, help="Number of shots to include (default: 1)")
     parser.add_argument("--png", action="store_true", help="Generate PNG cards using Next.js API")
     parser.add_argument("--png-dir", default="out/png_cards", help="Directory to save PNG cards (default: out/png_cards)")
+    parser.add_argument("--time-variant", help="Time variant for shot selection (e.g., '2025-09-09-14:30')")
     
     args = parser.parse_args()
     
@@ -145,7 +146,7 @@ def main():
         mmdd = get_user_birth_date()
     
     # Create demo deck
-    create_demo_deck(mmdd, args.k, args.png, args.png_dir)
+    create_demo_deck(mmdd, args.k, args.png, args.png_dir, args.time_variant)
 
 
 if __name__ == "__main__":
