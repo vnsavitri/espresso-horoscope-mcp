@@ -1570,8 +1570,7 @@ async def generate_cards_for_date(mmdd: str):
         project_root = Path(__file__).parent.parent
         result = subprocess.run([
             sys.executable, "tools/make_demo_deck.py", 
-            "--mmdd", mmdd, 
-            "--k", "3"
+            "--mmdd", mmdd
         ], cwd=project_root, capture_output=True, text=True)
         
         if result.returncode != 0:

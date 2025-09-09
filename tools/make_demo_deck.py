@@ -133,7 +133,7 @@ def main():
     
     parser = argparse.ArgumentParser(description="Create a user-specific demo deck")
     parser.add_argument("--mmdd", help="Birth date in MMDD format (if not provided, will prompt)")
-    parser.add_argument("--k", type=int, default=3, help="Number of shots to include (default: 3)")
+    parser.add_argument("--k", type=int, default=1, help="Number of shots to include (default: 1)")
     parser.add_argument("--png", action="store_true", help="Generate PNG cards using Next.js API")
     parser.add_argument("--png-dir", default="out/png_cards", help="Directory to save PNG cards (default: out/png_cards)")
     

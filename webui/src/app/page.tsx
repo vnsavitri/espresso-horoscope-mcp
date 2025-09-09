@@ -31,6 +31,9 @@ interface CardData {
 
 interface Reading {
   shot_id: string
+  timestamp: string
+  date: string
+  time: string
   user_context: {
     birth_mmdd: string
     style_preference: string
@@ -240,6 +243,10 @@ export default function Home() {
                   <div className="text-4xl mb-2">{reading.card.zodiac_icon}</div>
                   <h2 className="text-2xl font-bold text-white mb-1">{reading.card.title}</h2>
                   <p className="text-white/90 italic">"{reading.card.mantra}"</p>
+                  {/* Date and Time */}
+                  <div className="mt-3 text-sm text-white/80">
+                    {reading.date} at {reading.time}
+                  </div>
                 </div>
 
                 {/* Metrics Row */}

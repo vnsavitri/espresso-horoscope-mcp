@@ -9,12 +9,12 @@ demo: record extract cards ; @echo "Demo built -> out/cards.md"
 demo_user:
 	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=0802 make demo_user"; exit 1; fi
 	@echo "🎯 Creating demo deck for birth date $(MMDD)..."
-	$(PY) tools/make_demo_deck.py --mmdd $(MMDD) --k 3
+	$(PY) tools/make_demo_deck.py --mmdd $(MMDD)
 	@echo "🎉 Demo deck created -> out/cards.md"
 demo_user_png:
 	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=0802 make demo_user_png"; exit 1; fi
 	@echo "🎯 Creating demo deck with PNG cards for birth date $(MMDD)..."
-	$(PY) tools/make_demo_deck.py --mmdd $(MMDD) --k 3 --png --png-dir out/png_cards
+	$(PY) tools/make_demo_deck.py --mmdd $(MMDD) --png --png-dir out/png_cards
 	@echo "🎉 Demo deck with PNG cards created -> out/cards.md + out/png_cards/"
 export_images:
 	@echo "Checking FastAPI server on 127.0.0.1:8000..."

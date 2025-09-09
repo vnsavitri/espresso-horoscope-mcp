@@ -451,9 +451,16 @@ def generate_card(
     
     card += "\n---\n\n"
     
+    # Get current date and time for historical tracking
+    from datetime import datetime
+    current_datetime = datetime.now()
+    
     # Build JSON data for structured output
     json_data = {
         "shot_id": shot_id,
+        "timestamp": current_datetime.isoformat(),
+        "date": current_datetime.strftime("%Y-%m-%d"),
+        "time": current_datetime.strftime("%H:%M"),
         "user_context": {
             "birth_mmdd": user_birth_mmdd,
             "style_preference": style_bank,
