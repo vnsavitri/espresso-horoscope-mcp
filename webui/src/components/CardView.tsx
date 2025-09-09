@@ -124,7 +124,7 @@ export default function CardView({ reading, isOG = false }: CardViewProps) {
         </div>
         {/* Constellation and Tones */}
         <div className="text-xs text-neutral-400">
-          {card.zodiac} • {reading.user_context.style_preference}
+          {card.zodiac_icon} {card.zodiac} • {reading.user_context.style_preference}
         </div>
       </div>
     </div>

@@ -26,17 +26,18 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/vnsavitri/espresso-horoscope-mcp.git
    cd espresso-horoscope-mcp
    ```
-
 2. **Install Python dependencies**
+
    ```bash
    pip install -e .
    ```
-
 3. **Install Node.js dependencies**
+
    ```bash
    cd webui
    npm install
@@ -50,6 +51,7 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 Perfect for judges, users, or anyone who wants to experience the horoscope system without a physical machine.
 
 #### Setup
+
 ```bash
 # Start the FastAPI backend
 make serve
@@ -59,6 +61,7 @@ cd webui && npm run dev
 ```
 
 #### Experience
+
 1. **Open browser**: `http://localhost:3000`
 2. **Enter birth date**: Input MMDD format (e.g., `1021` for October 21st)
 3. **Click**: "Generate my espresso horoscope"
@@ -66,6 +69,7 @@ cd webui && npm run dev
 5. **Try different dates**: Click "Try Different Date" to explore different zodiac signs
 
 #### Experience the Magic
+
 Enter your birth date in MMDD format (e.g., `1021` for October 21st) and discover your personalized cosmic coffee destiny. Each birth date generates unique horoscope cards with your zodiac sign and personalized guidance.
 
 ### Scenario 2: Gaggiuino Machine Integration
@@ -73,6 +77,7 @@ Enter your birth date in MMDD format (e.g., `1021` for October 21st) and discove
 For users with a Gaggiuino-equipped espresso machine.
 
 #### Supported Gaggiuino Models
+
 - **Gaggia Classic** (all variants)
 - **Gaggia Classic Pro**
 - **Gaggia Classic Evo**
@@ -82,6 +87,7 @@ For users with a Gaggiuino-equipped espresso machine.
 *Note: Requires Gaggiuino firmware with MCP data export capability*
 
 #### Setup
+
 ```bash
 # Configure your Gaggiuino machine to export shot data
 # Place shot data files in the data/ directory
@@ -92,7 +98,9 @@ cd webui && npm run dev
 ```
 
 #### Data Format
+
 The system expects shot data in JSONL format with the following structure:
+
 ```json
 {
   "timestamp": "2025-01-09T10:30:00Z",
@@ -108,18 +116,21 @@ The system expects shot data in JSONL format with the following structure:
 ## 🎨 Features
 
 ### Dynamic Card Generation
+
 - **Real-time Creation**: Each birth date generates completely new cards
 - **Zodiac Integration**: 12 different zodiac signs with unique personalities
 - **Deterministic Results**: Same date always produces the same cards
 - **Varied Content**: Different dates produce different readings and advice
 
 ### Beautiful Web Interface
+
 - **Cosmic Design**: Purple-blue gradient background with glass morphism
 - **Responsive Layout**: Works on desktop and mobile
 - **Smooth Animations**: Elegant transitions and loading states
 - **Clean Typography**: Professional card design with proper spacing
 
 ### Technical Architecture
+
 - **FastAPI Backend**: RESTful API with real-time card generation
 - **Next.js Frontend**: Modern React application with TypeScript
 - **SVG Card System**: Scalable vector graphics for crisp card rendering
@@ -128,6 +139,7 @@ The system expects shot data in JSONL format with the following structure:
 ## 🛠️ Development
 
 ### Project Structure
+
 ```
 espresso-horoscope-mcp/
 ├── cli/                    # Command-line tools
@@ -142,6 +154,7 @@ espresso-horoscope-mcp/
 ```
 
 ### Key Commands
+
 ```bash
 # Generate demo cards for a specific birth date
 make demo_user MMDD=1021
@@ -160,6 +173,7 @@ make clean
 ```
 
 ### API Endpoints
+
 - `GET /` - Main web interface
 - `GET /cards.json` - Get existing cards
 - `GET /generate_cards?mmdd=1021` - Generate new cards for birth date
@@ -169,19 +183,24 @@ make clean
 ## 🎭 Key Technical Details
 
 ### Deterministic Generation
+
 The system uses a sophisticated seeding mechanism:
+
 ```python
 seed = hash(shot_id + YYYYMMDD + user_birth_mmdd + style_bank + season + time_of_day)
 ```
 
 This ensures:
+
 - Same user + same date = same cards
 - Different users = different cards
 - Different dates = different cards
 - Consistent results across sessions
 
 ### Zodiac Integration
+
 Each birth date maps to a zodiac sign:
+
 - **Aries** (March 21 - April 19): 🐏
 - **Taurus** (April 20 - May 20): 🐂
 - **Gemini** (May 21 - June 20): 👯‍♂️
@@ -196,7 +215,9 @@ Each birth date maps to a zodiac sign:
 - **Pisces** (February 19 - March 20): 🐟
 
 ### Card Structure
+
 Each horoscope card includes:
+
 - **Zodiac Sign**: Visual icon and label
 - **Title**: Cosmic-themed card name
 - **Mantra**: Inspirational quote
@@ -222,12 +243,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Gaggiuino Community** for the amazing open-source espresso machine modifications
 - **Astrological Traditions** for the cosmic inspiration
 - **Espresso Enthusiasts** worldwide for the passion and dedication
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/vnsavitri/espresso-horoscope-mcp/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/vnsavitri/espresso-horoscope-mcp/discussions)
-- **Documentation**: [Wiki](https://github.com/vnsavitri/espresso-horoscope-mcp/wiki)
 
 ---
 

@@ -192,12 +192,131 @@ def get_zodiac_info(birth_mmdd: str) -> tuple[str, str]:
     return "Unknown", "☕"
 
 
+def get_style_bank_for_user(user_birth_mmdd: str) -> str:
+    """
+    Determine style bank based on user's birth date for variety.
+    
+    Args:
+        user_birth_mmdd: User's birth month/day (MMDD format)
+        
+    Returns:
+        Style bank name (chill, punchy, nerdy, mystical)
+    """
+    # Use birth date to deterministically select style
+    # This ensures same user always gets same style, but different users get different styles
+    month = int(user_birth_mmdd[:2])
+    day = int(user_birth_mmdd[2:])
+    
+    # Create a simple hash from month and day
+    style_hash = (month * 31 + day) % 4
+    
+    style_banks = ["chill", "punchy", "nerdy", "mystical"]
+    return style_banks[style_hash]
+
+
+def get_dynamic_style_bank(features: Dict[str, Any], user_birth_mmdd: str, use_gptoss: bool = False) -> str:
+    """
+    Get dynamic style bank combining coffee profile and daily mood.
+    
+    Args:
+        features: Shot features
+        user_birth_mmdd: User's birth date
+        use_gptoss: Whether to use GPT-OSS for generation
+        
+    Returns:
+        Dynamic style bank name
+    """
+    try:
+        # Import from the same directory
+        import sys
+        from pathlib import Path
+        current_dir = Path(__file__).parent
+        sys.path.insert(0, str(current_dir))
+        from dynamic_style import get_dynamic_style_bank as get_dynamic_style
+        style = get_dynamic_style(features, user_birth_mmdd, use_gptoss)
+        return style
+    except Exception as e:
+        print(f"Warning: Could not use dynamic_style: {e}", file=sys.stderr)
+        # Fallback to static style bank
+        return get_style_bank_for_user(user_birth_mmdd)
+
+
+def get_dynamic_reading(features: Dict[str, Any], rule_id: str, use_gptoss: bool = True) -> str:
+    """
+    Get a dynamic, creative reading for the shot.
+    
+    Args:
+        features: Shot features
+        rule_id: Diagnostic rule ID
+        use_gptoss: Whether to use GPT-OSS for generation
+        
+    Returns:
+        Creative reading
+    """
+    try:
+        # Import from the same directory
+        import sys
+        from pathlib import Path
+        current_dir = Path(__file__).parent
+        sys.path.insert(0, str(current_dir))
+        from dynamic_readings import get_dynamic_reading as get_dynamic_reading_func
+        return get_dynamic_reading_func(features, rule_id, use_gptoss)
+    except Exception as e:
+        print(f"Warning: Could not use dynamic_readings: {e}", file=sys.stderr)
+        # Fallback to static template
+        astro_data = {"template": "Your espresso tells a unique story..."}
+        return render_template(astro_data.get("template", "Your espresso tells a story..."), features)
+
+
+def extract_tones_from_dynamic_style(style_bank: str) -> List[str]:
+    """
+    Extract tone words from dynamic style bank names.
+    
+    Args:
+        style_bank: Dynamic style bank name (e.g., "cosmic-rhythm", "stellar-intensity")
+        
+    Returns:
+        List of tone words
+    """
+    # Map dynamic style patterns to tone words
+    style_mappings = {
+        "cosmic": ["cosmic", "ethereal", "transcendent", "otherworldly"],
+        "stellar": ["stellar", "brilliant", "radiant", "luminous"],
+        "lunar": ["lunar", "mystical", "dreamy", "serene"],
+        "nebula": ["nebula", "flowing", "swirling", "gentle"],
+        "stellar": ["stellar", "dynamic", "energetic", "vibrant"],
+        "chaos": ["chaotic", "wild", "unpredictable", "creative"],
+        "balance": ["balanced", "harmonious", "perfect", "smooth"],
+        "rhythm": ["rhythmic", "flowing", "steady", "consistent"],
+        "intensity": ["intense", "powerful", "dramatic", "bold"],
+        "patience": ["patient", "calm", "peaceful", "contemplative"]
+    }
+    
+    # Extract key words from style name
+    style_lower = style_bank.lower()
+    tones = []
+    
+    # Check for known patterns
+    for pattern, tone_words in style_mappings.items():
+        if pattern in style_lower:
+            tones.extend(tone_words)
+    
+    # If no patterns found, use the style name itself
+    if not tones:
+        # Split on hyphens and use the words
+        words = style_lower.replace("-", " ").split()
+        tones = words + ["mystical", "cosmic"]
+    
+    return tones[:4]  # Return up to 4 tone words
+
+
 def get_personalized_flavour_line(
     features: Dict[str, Any], 
     rule_id: str, 
     flavour_banks: Dict[str, Any], 
     seed: str,
-    user_birth_mmdd: str = None
+    user_birth_mmdd: str = None,
+    style_bank: str = "chill"
 ) -> str:
     """
     Generate a personalized flavour line using seeded variations.
@@ -219,7 +338,13 @@ def get_personalized_flavour_line(
     cosmic_verbs = flavour_banks.get("cosmic_verbs", ["dances", "flows"])
     
     # Get tonal variations based on style
-    tones = flavour_banks.get("tones", {}).get("chill", ["gentle", "smooth"])
+    # Handle both static style banks and dynamic style banks
+    if style_bank in flavour_banks.get("tones", {}):
+        # Static style bank (chill, punchy, nerdy, mystical)
+        tones = flavour_banks.get("tones", {}).get(style_bank, ["gentle", "smooth"])
+    else:
+        # Dynamic style bank - extract tone from the style name
+        tones = extract_tones_from_dynamic_style(style_bank)
     
     # Select seeded variations
     noun = sr.choice(cosmic_nouns)
@@ -250,7 +375,7 @@ def generate_card(
     flavour_banks: Dict[str, Any],
     use_gptoss: bool = False,
     user_birth_mmdd: str = None,
-    style_bank: str = "chill"
+    style_bank: str = None
 ) -> Tuple[str, Dict[str, Any]]:
     """
     Generate a single horoscope card with seeded variations.
@@ -258,6 +383,11 @@ def generate_card(
     Returns:
         Tuple of (markdown_card, json_data)
     """
+    # Determine style bank if not provided
+    if style_bank is None:
+        # Use dynamic style bank that combines coffee profile + daily mood
+        style_bank = get_dynamic_style_bank(features, user_birth_mmdd or "0101", use_gptoss)
+    
     # Find matching rule
     rule_id, rule_data = find_matching_rule(features, rules)
     
@@ -283,19 +413,14 @@ def generate_card(
     
     # Get personalized flavour line
     flavour_line = get_personalized_flavour_line(
-        features, rule_id, flavour_banks, seed, user_birth_mmdd
+        features, rule_id, flavour_banks, seed, user_birth_mmdd, style_bank
     )
     
     # Build card
     emoji = astro_data.get("emoji", "☕")
-    template = astro_data.get("template", "Your espresso tells a story...")
     
-    # Render template
-    rendered_template = render_template(template, features)
-    
-    # Apply gpt-oss if requested
-    if use_gptoss:
-        rendered_template = enhance_text_with_gptoss(rendered_template)
+    # Generate dynamic, creative reading
+    rendered_template = get_dynamic_reading(features, rule_id, use_gptoss)
     
     # Build markdown card
     card = f"""## {emoji} {title}
@@ -492,8 +617,8 @@ Examples:
     parser.add_argument(
         '--style-bank',
         choices=['chill', 'punchy', 'nerdy', 'mystical'],
-        default='chill',
-        help='Style preference for tone variations (default: chill)'
+        default=None,
+        help='Style preference for tone variations (default: auto-detect from birth date)'
     )
     
     parser.add_argument(
@@ -537,7 +662,13 @@ Examples:
         # Load user config or use command line args
         user_config = load_user_config()
         user_birth_mmdd = args.birth_date or user_config.get("birth_mmdd")
-        style_bank = args.style_bank or user_config.get("style_bank", "chill")
+        
+        # Use dynamic style bank based on birth date, or override with command line
+        if args.style_bank:
+            style_bank = args.style_bank
+        else:
+            # Will be determined dynamically in generate_card based on features
+            style_bank = None
         
         # If this is first use and no birth date provided, prompt for it
         if user_config.get("first_use", True) and not user_birth_mmdd:

@@ -292,7 +292,7 @@ export default function Home() {
                 <div className="p-6 bg-white/5 border-t border-white/10">
                   <div className="text-center">
                     <div className="text-xs text-white/60">
-                      {reading.card.zodiac} • {cards.metadata.style_bank}
+                      {reading.card.zodiac_icon} {reading.card.zodiac} • {reading.user_context.style_preference}
                     </div>
                   </div>
                 </div>
