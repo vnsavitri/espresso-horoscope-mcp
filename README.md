@@ -6,6 +6,24 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 
 ![Espresso Horoscope Demo](https://img.shields.io/badge/Status-MVP%20Ready-brightgreen) ![Python](https://img.shields.io/badge/Python-3.8+-blue) ![Next.js](https://img.shields.io/badge/Next.js-15+-black) ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
 
+## 🏆 OpenAI Open Model Hackathon Entry
+
+**Category**: Best Local Agent + Wildcard  
+**Repository**: [github.com/vnsavitri/espresso-horoscope-mcp](https://github.com/vnsavitri/espresso-horoscope-mcp)
+
+### 🎬 Demo Instructions
+1. **Start LM Studio** with `gpt-oss-20b` model loaded
+2. **Run demo setup**: `./tools/quick_demo.sh`
+3. **Open**: http://localhost:3000
+4. **Enter birth date** (MMDD format, e.g., `1021`)
+5. **Generate horoscope** and see GPT-OSS in action!
+
+### 🤖 GPT-OSS Integration
+- **Local AI**: Runs completely offline via LM Studio
+- **Dynamic Styles**: AI generates unique style names (`dusk-flow`, `stellar-pulse`)
+- **Creative Readings**: Poetic descriptions instead of generic templates
+- **Fallback System**: Works perfectly even without AI
+
 ## 🌟 What Makes This Fun in a Weird Way
 
 - **Real Espresso Data**: Uses actual shot metrics from Gaggiuino machines or realistic simulations
