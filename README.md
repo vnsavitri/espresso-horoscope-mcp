@@ -227,6 +227,29 @@ The system creates unique cosmic personalities by combining:
 - **Data-Driven Content**: Every reading references actual shot metrics
 - **Variety Engine**: 70+ shot patterns for maximum uniqueness
 
+### GPT-OSS Integration
+
+The system integrates with **GPT-OSS (Open Source GPT)** for enhanced creativity:
+
+- **Local AI Model**: Uses `gpt-oss:20b` via LM Studio or Ollama
+- **Dynamic Style Generation**: AI creates unique style names like "cosmic-rhythm", "stellar-harmony"
+- **Creative Readings**: AI generates poetic, unique descriptions for each shot
+- **Fallback System**: Works perfectly even when AI is unavailable
+- **Offline Capable**: All AI processing happens locally
+
+**Setup GPT-OSS:**
+1. Install LM Studio or Ollama
+2. Download `gpt-oss:20b` model
+3. **For LM Studio**: Load the model and start the local server
+4. Set `OPENAI_BASE_URL` environment variable:
+   ```bash
+   export OPENAI_BASE_URL="http://10.10.0.178:1234/v1"  # LM Studio
+   # or
+   export OPENAI_BASE_URL="http://localhost:11434/v1"    # Ollama
+   ```
+5. System automatically detects and uses AI when available
+6. **Fallback**: Works perfectly without AI using deterministic algorithms
+
 ### Deterministic Generation
 
 The system uses a sophisticated seeding mechanism:
