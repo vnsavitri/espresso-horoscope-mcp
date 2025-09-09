@@ -44,10 +44,9 @@ interface Reading {
 
 interface CardsResponse {
   metadata: {
-    generated_at: string
     user_birth_mmdd: string
-    style_bank: string
-    total_shots: number
+    total_cards: number
+    last_updated: string
   }
   readings: Reading[]
 }
@@ -232,6 +231,17 @@ export default function Home() {
           >
             Try Different Date
           </button>
+        </div>
+
+        {/* Header with card count */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-white mb-2">
+            Your Espresso Horoscope Journey
+          </h2>
+          <p className="text-white/70">
+            {cards.metadata.total_cards} reading{cards.metadata.total_cards !== 1 ? 's' : ''} • 
+            Birth date: {cards.metadata.user_birth_mmdd}
+          </p>
         </div>
 
         <div className="space-y-8">

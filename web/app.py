@@ -1555,16 +1555,56 @@ async def get_cards_json():
         raise HTTPException(status_code=500, detail=f"Error loading cards JSON: {str(e)}")
 
 
+def get_user_cards_file(mmdd: str) -> Path:
+    """Get the user-specific cards file path."""
+    project_root = Path(__file__).parent.parent
+    user_dir = project_root / "out" / "users"
+    user_dir.mkdir(parents=True, exist_ok=True)
+    return user_dir / f"cards_{mmdd}.json"
+
+
+def load_user_cards(mmdd: str) -> dict:
+    """Load existing cards for a user."""
+    user_file = get_user_cards_file(mmdd)
+    if user_file.exists():
+        try:
+            with open(user_file, 'r') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, FileNotFoundError):
+            pass
+    
+    # Return empty structure if no existing cards
+    return {
+        "metadata": {
+            "user_birth_mmdd": mmdd,
+            "total_cards": 0,
+            "last_updated": None
+        },
+        "readings": []
+    }
+
+
+def save_user_cards(mmdd: str, cards_data: dict):
+    """Save cards for a user."""
+    user_file = get_user_cards_file(mmdd)
+    with open(user_file, 'w') as f:
+        json.dump(cards_data, f, indent=2)
+
+
 @app.get("/generate_cards")
 async def generate_cards_for_date(mmdd: str):
-    """Generate new horoscope cards for a specific birth date."""
+    """Generate new horoscope cards for a specific birth date and add to user's history."""
     try:
         import subprocess
         import sys
+        from datetime import datetime
         
         # Validate mmdd format
         if not mmdd or len(mmdd) != 4 or not mmdd.isdigit():
             raise HTTPException(status_code=400, detail="Invalid birth date format. Use MMDD format (e.g., 1021)")
+        
+        # Load existing user cards
+        user_cards = load_user_cards(mmdd)
         
         # Run the demo deck generator for this specific date
         project_root = Path(__file__).parent.parent
@@ -1576,16 +1616,32 @@ async def generate_cards_for_date(mmdd: str):
         if result.returncode != 0:
             raise HTTPException(status_code=500, detail=f"Failed to generate cards: {result.stderr}")
         
-        # Load the generated cards
+        # Load the newly generated card
         cards_file = project_root / "out/cards.json"
         if not cards_file.exists():
             raise HTTPException(status_code=500, detail="Cards were generated but file not found")
         
         with open(cards_file, 'r') as f:
-            cards_data = json.load(f)
+            new_cards_data = json.load(f)
+        
+        # Add the new card to user's history
+        new_reading = new_cards_data["readings"][0]  # We know there's only 1 card now
+        
+        # Add to user's readings list
+        user_cards["readings"].append(new_reading)
+        
+        # Sort by timestamp (newest first)
+        user_cards["readings"].sort(key=lambda x: x.get("timestamp", ""), reverse=True)
+        
+        # Update metadata
+        user_cards["metadata"]["total_cards"] = len(user_cards["readings"])
+        user_cards["metadata"]["last_updated"] = datetime.now().isoformat()
+        
+        # Save updated user cards
+        save_user_cards(mmdd, user_cards)
         
         return JSONResponse(
-            content=cards_data,
+            content=user_cards,
             headers={
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
@@ -1597,6 +1653,30 @@ async def generate_cards_for_date(mmdd: str):
         raise HTTPException(status_code=500, detail=f"Error generating cards: {str(e)}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating cards: {str(e)}")
+
+
+@app.get("/user_cards/{mmdd}")
+async def get_user_cards(mmdd: str):
+    """Get existing cards for a specific birth date without generating new ones."""
+    try:
+        # Validate mmdd format
+        if not mmdd or len(mmdd) != 4 or not mmdd.isdigit():
+            raise HTTPException(status_code=400, detail="Invalid birth date format. Use MMDD format (e.g., 1021)")
+        
+        # Load existing user cards
+        user_cards = load_user_cards(mmdd)
+        
+        return JSONResponse(
+            content=user_cards,
+            headers={
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading user cards: {str(e)}")
 
 
 @app.get("/history")
