@@ -1,274 +1,239 @@
-# ☕ Espresso Horoscope
+# ☕ Espresso Horoscope MCP
 
-*Turn your espresso shots into mystical horoscope readings*
+**Transform your espresso shots into personalized cosmic readings!**
 
-Hey there! 👋 I built this project because I'm obsessed with both espresso and the mystical side of things. What if your morning shot could tell you about your day ahead? That's exactly what this does - it analyzes your espresso shot data and generates personalized horoscope cards that are both scientifically accurate and delightfully cosmic.
+A mystical fusion of espresso shot analysis and astrological horoscopes, powered by real Gaggiuino machine data or simulated shot patterns. Generate beautiful, personalized horoscope cards based on your birth date and espresso shot characteristics.
 
-## 🌟 What Makes This Special
+![Espresso Horoscope Demo](https://img.shields.io/badge/Status-MVP%20Ready-brightgreen) ![Python](https://img.shields.io/badge/Python-3.8+-blue) ![Next.js](https://img.shields.io/badge/Next.js-15+-black) ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
 
-This isn't just another data visualization tool. It's a **personalized experience** where:
+## 🌟 What Makes This Fun in a Weird Way
 
-- **Your birth date determines your readings** - Each person gets their own unique set of horoscope cards
-- **Real brewing science meets cosmic wisdom** - Every reading is based on actual shot parameters (pressure, flow, temperature, etc.)
-- **Deterministic yet varied** - Same birth date always gets the same cards, but different people get completely different experiences
-- **Beautiful, shareable results** - Clean UI with high-quality image export for social media
+- **Real Espresso Data**: Uses actual shot metrics from Gaggiuino machines or realistic simulations
+- **Astrological Integration**: Each birth date generates unique zodiac-based readings
+- **Deterministic Yet Varied**: Same date = same cards, different date = completely different experience
+- **Beautiful Visual Design**: Cosmic-themed cards with proper typography and layout
+- **Real-time Generation**: Dynamic card creation for any birth date
+- **MCP Integration**: Works as a Model Context Protocol server for AI assistants
 
 ## 🚀 Quick Start
 
-Want to see it in action? Here's how to get started:
-
 ### Prerequisites
 
-- Python 3.9+
-- Node.js 18+ (for the web UI)
-- A sense of wonder ✨
+- **Python 3.8+**
+- **Node.js 18+** (for the web interface)
+- **Git**
 
 ### Installation
 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/vnsavitri/espresso-horoscope-mcp.git
+   cd espresso-horoscope-mcp
+   ```
+
+2. **Install Python dependencies**
+   ```bash
+   pip install -e .
+   ```
+
+3. **Install Node.js dependencies**
+   ```bash
+   cd webui
+   npm install
+   cd ..
+   ```
+
+## 🎯 Usage Scenarios
+
+### Scenario 1: Demo Mode (No Gaggiuino Machine)
+
+Perfect for judges, users, or anyone who wants to experience the horoscope system without a physical machine.
+
+#### Setup
 ```bash
-# Clone the repo
-git clone https://github.com/vnsavitri/espresso-horoscope-mcp.git
-cd espresso-horoscope-mcp
+# Start the FastAPI backend
+make serve
 
-# Install Python dependencies
-pip install pyyaml requests fastapi uvicorn pydantic python-dotenv
-
-# Install Node.js dependencies for the web UI
-cd webui
-npm install
-cd ..
-```
-
-### Generate Your First Horoscope
-
-```bash
-# Generate a personalized deck for your birth date (MMDD format)
-MMDD=0802 make demo_user
-
-# Start the web server
-make web
-
-# In another terminal, start the modern UI
+# In a new terminal, start the web interface
 cd webui && npm run dev
 ```
 
-Then open http://localhost:3001/?mmdd=0802 (replace 0802 with your birth date) and see your personalized horoscope cards!
+#### Experience
+1. **Open browser**: `http://localhost:3000`
+2. **Enter birth date**: Input MMDD format (e.g., `1021` for October 21st)
+3. **Click**: "Generate my espresso horoscope"
+4. **View cards**: See 3 personalized horoscope cards with cosmic guidance
+5. **Try different dates**: Click "Try Different Date" to explore different zodiac signs
 
-## 🎯 How It Works
+#### Demo Birth Dates to Try
+- `1021` - Libra (October 21st)
+- `0611` - Gemini (June 11th) 
+- `0301` - Pisces (March 1st)
+- `0701` - Cancer (July 1st)
+- `1201` - Sagittarius (December 1st)
+- `0802` - Leo (August 2nd)
 
-### The Magic Behind the Scenes
+### Scenario 2: Gaggiuino Machine Integration
 
-1. **Shot Palette Generation** - I created a diverse collection of 15 realistic espresso shots covering all brewing scenarios (fast, slow, choked, channeled, temperature issues, etc.)
-2. **Deterministic Selection** - Your birth date (MMDD) is used to deterministically select 3 unique shots from the palette. Same birth date = same shots, different birth date = different shots.
-3. **Feature Extraction** - Each shot gets analyzed for brewing metrics: brew ratio, shot time, peak pressure, temperature, and channeling score.
-4. **Rule-Based Diagnostics** - The system applies diagnostic rules to identify what went right or wrong with each shot.
-5. **Cosmic Interpretation** - Each diagnostic gets mapped to a mystical theme with personalized advice, powered by your zodiac sign and seeded randomness.
-6. **Beautiful Rendering** - Everything comes together in gorgeous horoscope cards with your zodiac animal emoji and personalized cosmic wisdom.
+For users with a Gaggiuino-equipped espresso machine.
 
-### The Technical Stack
+#### Supported Gaggiuino Models
+- **Gaggia Classic** (all variants)
+- **Gaggia Classic Pro**
+- **Gaggia Classic Evo**
+- **Gaggia New Baby**
+- **Gaggia Carezza**
 
-- **Backend**: Python with FastAPI serving JSON data
-- **Frontend**: Next.js with TypeScript, Tailwind CSS, and shadcn/ui components
-- **Data Pipeline**: Shot simulation → Feature extraction → Rule evaluation → Card generation
-- **Personalization**: Deterministic hashing based on birth date + zodiac mapping
-- **Export**: Playwright for high-quality image generation
+*Note: Requires Gaggiuino firmware with MCP data export capability*
+
+#### Setup
+```bash
+# Configure your Gaggiuino machine to export shot data
+# Place shot data files in the data/ directory
+
+# Start the system
+make serve
+cd webui && npm run dev
+```
+
+#### Data Format
+The system expects shot data in JSONL format with the following structure:
+```json
+{
+  "timestamp": "2025-01-09T10:30:00Z",
+  "brew_ratio": 2.1,
+  "shot_time": 28,
+  "peak_pressure": 9.0,
+  "temp_avg": 92.5,
+  "channeling": 0.05,
+  "flow_rate": 1.2
+}
+```
 
 ## 🎨 Features
 
-### Personalized Horoscope Cards
+### Dynamic Card Generation
+- **Real-time Creation**: Each birth date generates completely new cards
+- **Zodiac Integration**: 12 different zodiac signs with unique personalities
+- **Deterministic Results**: Same date always produces the same cards
+- **Varied Content**: Different dates produce different readings and advice
 
-- **Zodiac Integration**: Your birth date determines your zodiac sign with fun animal emojis (🦁 Leo, 🐐 Capricorn, 🐟 Pisces, etc.)
-- **Seeded Randomness**: Same shot + same user + same date = same phrasing, but different users get different cosmic interpretations
-- **Real Brewing Data**: Every reading is based on actual shot parameters, not random text
+### Beautiful Web Interface
+- **Cosmic Design**: Purple-blue gradient background with glass morphism
+- **Responsive Layout**: Works on desktop and mobile
+- **Smooth Animations**: Elegant transitions and loading states
+- **Clean Typography**: Professional card design with proper spacing
 
-### Modern Web Interface
+### Technical Architecture
+- **FastAPI Backend**: RESTful API with real-time card generation
+- **Next.js Frontend**: Modern React application with TypeScript
+- **SVG Card System**: Scalable vector graphics for crisp card rendering
+- **MCP Protocol**: Model Context Protocol integration for AI assistants
 
-- **Clean Design**: Minimalist, browser-friendly layout (768×1024) that looks great on any screen
-- **Real-time Filtering**: Add `?mmdd=0802` to any URL to see personalized cards
-- **Shareable Links**: Direct links to specific cards for specific users
-- **Responsive**: Works perfectly on desktop and mobile
+## 🛠️ Development
 
-### High-Quality Export
-
-- **Social Media Ready**: Export cards as PNG/JPG images in portrait (768×1024) or OG (1200×630) formats
-- **Batch Export**: Generate all cards at once with a single command
-- **Professional Quality**: Perfect for sharing on Instagram, Twitter, or anywhere else
-
-## 🛠️ Make Targets
-
-I've set up convenient make targets to streamline the workflow:
-
-```bash
-# Generate a personalized deck for your birth date
-MMDD=0802 make demo_user
-
-# Generate the full shot palette (15 diverse shots)
-make demo
-
-# Start the FastAPI server
-make web
-
-# Export high-quality images (requires server running)
-make export_images
-
-# Run all tests
-make check
-```
-
-## 🎭 Demo Examples
-
-Try these URLs to see different personalized experiences:
-
-- **All cards**: http://localhost:3001/
-- **User born Aug 2**: http://localhost:3001/?mmdd=0802
-- **User born June 11**: http://localhost:3001/?mmdd=0611
-- **User born Dec 25**: http://localhost:3001/?mmdd=1225
-- **Share first card for Aug 2 user**: http://localhost:3001/share/0?mmdd=0802
-
-Each birth date gets a completely different set of horoscope cards, but the same birth date always gets the same cards (perfect for consistency).
-
-## 🤖 Optional AI Enhancement
-
-Want to make the horoscope text even more creative? You can integrate with a local LLM:
-
-### Option 1: LM Studio (Recommended)
-
-```bash
-# Install LM Studio and load gpt-oss-20b model
-# Enable the API server in LM Studio GUI
-export OPENAI_BASE_URL="http://localhost:1234/v1"
-export OPENAI_API_KEY="lm-studio"
-
-# Generate cards with AI enhancement
-python3 cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md --style gptoss --birth-date 0802
-```
-
-### Option 2: Ollama
-
-```bash
-# Install Ollama and pull the model
-brew install ollama
-ollama pull gpt-oss:20b
-
-# Set environment variables
-export OPENAI_BASE_URL="http://localhost:11434/v1"
-export OPENAI_API_KEY="ollama"
-
-# Generate enhanced cards
-python3 cli/cards.py --features data/features.jsonl --rules rules/diagnostics.yaml --astro content/astro_map.yaml --out out/cards.md --style gptoss --birth-date 0802
-```
-
-The AI enhancement keeps all numbers and units exactly the same while making the cosmic interpretations more creative and varied.
-
-## 🧪 Testing & Quality
-
-I've built comprehensive testing to ensure everything works reliably:
-
-```bash
-# Test determinism (same inputs = same outputs)
-python3 tools/determinism_check.py
-
-# Test full integration
-python3 tools/integration_test.py
-
-# Test specific birth date
-python3 cli/picker.py --mmdd 0802 --k 3 --total 15
-```
-
-All tests pass, ensuring that:
-
-- Same birth date always gets same cards
-- Different birth dates get different cards
-- Metrics formatting is consistent
-- The full pipeline works end-to-end
-
-## 📁 Project Structure
-
+### Project Structure
 ```
 espresso-horoscope-mcp/
 ├── cli/                    # Command-line tools
-│   ├── cards.py           # Main card generator
-│   └── picker.py          # Deterministic shot picker
-├── content/               # Configuration files
-│   ├── astro_map.yaml    # Rule → cosmic theme mapping
-│   └── flavour.yaml      # Text banks for variety
-├── data_sources/          # Data processing
-│   └── gaggiuino_loader.py
-├── features/              # Feature extraction
-│   └── extract.py
-├── rules/                 # Diagnostic rules
-│   └── diagnostics.yaml
-├── tools/                 # Utilities
-│   ├── simulate_shots.py  # Shot palette generator
-│   ├── make_demo_deck.py  # User-specific deck builder
-│   ├── determinism_check.py
-│   └── integration_test.py
-├── web/                   # FastAPI backend
-│   └── app.py
-├── webui/                 # Next.js frontend
-│   ├── src/app/          # Pages and components
-│   ├── src/lib/          # Utilities (picker logic)
-│   └── scripts/          # Export scripts
-└── sample/               # Demo data
-    ├── mcp_shots/        # Individual shot files
-    └── shots_palette.jsonl
+├── web/                    # FastAPI backend
+├── webui/                  # Next.js frontend
+├── data_sources/           # Data loading utilities
+├── features/               # Feature extraction
+├── content/                # Astrological content
+├── rules/                  # Diagnostic rules
+├── tools/                  # Utility scripts
+└── sample/                 # Sample data
 ```
 
-## 🎯 For Judges & Contributors
+### Key Commands
+```bash
+# Generate demo cards for a specific birth date
+make demo_user MMDD=1021
 
-### What Makes This Fun (In a Weird Way)
+# Generate cards with PNG export
+make demo_user_png MMDD=1021
 
-1. **Real Personalization**: Not just random text - each user gets a scientifically-based, personalized experience that's actually meaningful
-2. **Deterministic Yet Varied**: Same user always gets same results, but different users get completely different experiences (it's like having your own cosmic fingerprint)
-3. **Full-Stack Integration**: Everything works together seamlessly from data generation to beautiful UI (no duct tape required!)
-4. **Actually Works**: Comprehensive testing, error handling, and documentation (because nothing's worse than a broken demo)
-5. **Extensible**: Easy to add new shot patterns, diagnostic rules, or cosmic themes (the universe is your oyster)
+# Start backend server
+make serve
 
-### Key Technical Details
+# Run tests
+make test
 
-- **Deterministic Hashing**: Consistent shot selection across CLI and UI (same birth date = same cosmic destiny)
-- **Realistic Data Generation**: 15 diverse shots covering all brewing scenarios (because real espresso is messy)
-- **Modern Web Stack**: Next.js + TypeScript + Tailwind + shadcn/ui (keeping up with the times)
-- **High-Quality Export**: Playwright-based image generation (for when you want to share your cosmic wisdom on social media)
-- **Comprehensive Testing**: Determinism, integration, and consistency tests (because we all make mistakes)
+# Clean generated files
+make clean
+```
 
-### How to Evaluate
+### API Endpoints
+- `GET /` - Main web interface
+- `GET /cards.json` - Get existing cards
+- `GET /generate_cards?mmdd=1021` - Generate new cards for birth date
+- `POST /api/card` - Generate PNG card image
+- `GET /health` - Health check
 
-1. **Try different birth dates** - See how each gets unique cards
-2. **Test consistency** - Same birth date should always give same results
-3. **Check the UI** - Modern, responsive, and shareable
-4. **Export images** - High-quality social media ready outputs
-5. **Run tests** - Everything should pass determinism and integration tests
+## 🎭 Key Technical Details
+
+### Deterministic Generation
+The system uses a sophisticated seeding mechanism:
+```python
+seed = hash(shot_id + YYYYMMDD + user_birth_mmdd + style_bank + season + time_of_day)
+```
+
+This ensures:
+- Same user + same date = same cards
+- Different users = different cards
+- Different dates = different cards
+- Consistent results across sessions
+
+### Zodiac Integration
+Each birth date maps to a zodiac sign:
+- **Aries** (March 21 - April 19): 🐏
+- **Taurus** (April 20 - May 20): 🐂
+- **Gemini** (May 21 - June 20): 👯‍♂️
+- **Cancer** (June 21 - July 22): 🦀
+- **Leo** (July 23 - August 22): 🦁
+- **Virgo** (August 23 - September 22): 🦋
+- **Libra** (September 23 - October 22): 🦢
+- **Scorpio** (October 23 - November 21): 🦂
+- **Sagittarius** (November 22 - December 21): 🏹
+- **Capricorn** (December 22 - January 19): 🐐
+- **Aquarius** (January 20 - February 18): 🐬
+- **Pisces** (February 19 - March 20): 🐟
+
+### Card Structure
+Each horoscope card includes:
+- **Zodiac Sign**: Visual icon and label
+- **Title**: Cosmic-themed card name
+- **Mantra**: Inspirational quote
+- **Espresso Metrics**: Ratio, time, pressure, temperature, channeling
+- **Cosmic Guidance**: Personalized advice
+- **Narrative**: Flowing description
+- **Metadata**: Seed, rule, severity information
 
 ## 🤝 Contributing
 
-Found a bug? Have an idea for a new cosmic theme? Want to add support for different espresso machines?
-
-1. Fork the repo
-2. Create a feature branch
-3. Make your changes
-4. Run the tests to ensure nothing breaks
-5. Submit a pull request
-
-I'm particularly interested in:
-
-- New diagnostic rules for different brewing issues
-- Additional cosmic themes and zodiac interpretations
-- Support for other espresso machine data formats
-- UI/UX improvements
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT License - feel free to use this for your own mystical espresso adventures!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- The espresso community for sharing shot data and brewing wisdom
-- The open source projects that made this possible (FastAPI, Next.js, Tailwind, etc.)
-- Everyone who's ever wondered if their morning shot has cosmic significance (it does!)
+- **Gaggiuino Community** for the amazing open-source espresso machine modifications
+- **Astrological Traditions** for the cosmic inspiration
+- **Espresso Enthusiasts** worldwide for the passion and dedication
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/vnsavitri/espresso-horoscope-mcp/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/vnsavitri/espresso-horoscope-mcp/discussions)
+- **Documentation**: [Wiki](https://github.com/vnsavitri/espresso-horoscope-mcp/wiki)
 
 ---
 
-*May your shots be perfectly extracted and your horoscopes be ever in your favor* ☕✨
-
-**Built with ☕ and ✨ by someone who believes every espresso shot tells a story**
+**May your shots be perfectly extracted and your cosmic readings be ever enlightening!** ☕✨
