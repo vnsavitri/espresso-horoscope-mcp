@@ -20,6 +20,17 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 6. **Enter birth date** (MMDD format, e.g., `1021`)
 7. **Generate horoscope** and see GPT-OSS in action!
 
+### ✈️ **Airplane Mode Demo** (Proves Offline Capability)
+1. **Turn off Wi-Fi** to prove offline inference
+2. **Generate a horoscope card** (it will still work!)
+3. **Show LM Studio console** streaming tokens
+4. **Turn Wi-Fi back on**
+
+### 🎯 **Determinism Demo** (Shows Technical Sophistication)
+1. **Same birth date twice** → identical headlines
+2. **Change time of day** → style shifts  
+3. **Change date** → new seed, different card
+
 ### 🤖 GPT-OSS Integration
 - **Local AI**: Runs completely offline via LM Studio
 - **Dynamic Styles**: AI generates unique style names (`dusk-flow`, `stellar-pulse`)
@@ -263,9 +274,11 @@ The system integrates with **GPT-OSS (Open Source GPT)** for enhanced creativity
 3. **For LM Studio**: Load the model and start the local server
 4. Set `OPENAI_BASE_URL` environment variable:
    ```bash
-   export OPENAI_BASE_URL="http://10.10.0.178:1234/v1"  # LM Studio
+   export OPENAI_BASE_URL="http://localhost:1234/v1"     # LM Studio (default)
    # or
    export OPENAI_BASE_URL="http://localhost:11434/v1"    # Ollama
+   # or
+   export OPENAI_BASE_URL="http://YOUR_IP:1234/v1"       # Remote LM Studio
    ```
 5. System automatically detects and uses AI when available
 6. **Fallback**: Works perfectly without AI using deterministic algorithms
