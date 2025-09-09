@@ -290,7 +290,16 @@ export default function Home() {
 
                 {/* Meta */}
                 <div className="p-6 bg-white/5 border-t border-white/10">
-                  <div className="text-center">
+                  <div className="text-center space-y-2">
+                    {/* Seed, Rule, Severity */}
+                    <div className="text-xs text-white/60 space-x-3">
+                      <span>seed: {reading.card.seed.slice(0, 8)}</span>
+                      <span>•</span>
+                      <span>rule: {reading.card.rule_hit}</span>
+                      <span>•</span>
+                      <span>severity: {reading.card.rule_hit === 'sweet_spot' ? 'perfect' : 'warning'}</span>
+                    </div>
+                    {/* Zodiac and Style */}
                     <div className="text-xs text-white/60">
                       {reading.card.zodiac_icon} {reading.card.zodiac} • {reading.user_context.style_preference}
                     </div>
