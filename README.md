@@ -13,10 +13,12 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 
 ### 🎬 Demo Instructions
 1. **Start LM Studio** with `gpt-oss-20b` model loaded
-2. **Run demo setup**: `./tools/quick_demo.sh`
-3. **Open**: http://localhost:3000
-4. **Enter birth date** (MMDD format, e.g., `1021`)
-5. **Generate horoscope** and see GPT-OSS in action!
+2. **Set environment**: `export OPENAI_BASE_URL="http://localhost:1234/v1"`
+3. **Start backend**: `uvicorn web.app:app --reload`
+4. **Start frontend**: `cd webui && npm run dev`
+5. **Open**: http://localhost:3000
+6. **Enter birth date** (MMDD format, e.g., `1021`)
+7. **Generate horoscope** and see GPT-OSS in action!
 
 ### 🤖 GPT-OSS Integration
 - **Local AI**: Runs completely offline via LM Studio
