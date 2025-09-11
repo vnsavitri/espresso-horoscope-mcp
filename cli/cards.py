@@ -133,6 +133,38 @@ def render_template(template: str, features: Dict[str, Any]) -> str:
         return template
 
 
+def get_coffee_shot_type(features: Dict[str, Any]) -> str:
+    """
+    Determine coffee shot type based on brew ratio and extraction time.
+    
+    Args:
+        features: Shot features containing brew_ratio, shot_end_s, dose_g, final_weight_g
+        
+    Returns:
+        Coffee shot type string (e.g., "Ristretto", "Espresso", "Lungo")
+    """
+    # Try to get brew_ratio directly first, then calculate from dose/weight
+    brew_ratio = features.get("brew_ratio")
+    
+    if brew_ratio is None:
+        # Fallback: calculate from dose and final weight
+        dose_g = features.get("dose_g", 18.0)
+        final_weight_g = features.get("final_weight_g", 36.0)
+        brew_ratio = final_weight_g / dose_g if dose_g > 0 else 2.0
+    
+    shot_end_s = features.get("shot_end_s", 30.0)
+    
+    # Determine shot type based on ratio
+    if brew_ratio <= 1.8:
+        return "Ristretto"
+    elif brew_ratio <= 2.5:
+        return "Espresso"
+    elif brew_ratio <= 3.5:
+        return "Lungo"
+    else:
+        return "Americano"
+
+
 def get_seeded_variations(rule_id: str, flavour_banks: Dict[str, Any], seed: str) -> Tuple[str, str]:
     """
     Get seeded title and tagline variations for a rule.
@@ -408,8 +440,14 @@ def generate_card(
     # Get zodiac information
     zodiac_name, zodiac_icon = get_zodiac_info(user_birth_mmdd or "0101")
     
+    # Get coffee shot type
+    coffee_type = get_coffee_shot_type(features)
+    
     # Get seeded variations
-    title, tagline = get_seeded_variations(rule_id, flavour_banks, seed)
+    base_title, tagline = get_seeded_variations(rule_id, flavour_banks, seed)
+    
+    # Combine coffee type with title
+    title = f"{coffee_type} • {base_title}"
     
     # Get personalized flavour line
     flavour_line = get_personalized_flavour_line(

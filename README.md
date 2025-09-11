@@ -81,6 +81,7 @@ python3 tools/determinism_check.py
 
 - **Real Espresso Data**: Uses actual shot metrics from Gaggiuino machines or realistic simulations
 - **98 Shot Variants**: Comprehensive coverage including ristretto, lungo, americano, double shots, and more
+- **Real Coffee Shot Types**: Titles show actual shot types like "Ristretto • Celestial Perfection" or "Lungo • Burning Galaxy"
 - **Dynamic Style Generation**: Each shot gets a unique cosmic personality based on characteristics and timing
 - **50+ Curated Styles**: Time-based, cosmic, coffee-inspired, mood-based, and elemental style categories
 - **Creative Poetic Readings**: No more boring templates - every reading is a unique cosmic poem
