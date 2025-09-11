@@ -18,7 +18,7 @@ See the [screenshots folder](screenshots/) for more examples of AI-generated cos
 ![Example Reading 1](screenshots/espresso-horoscope_reading_example1.png)
 ![Example Reading 3](screenshots/espresso-horoscope_reading_example3.png)
 
-Each reading combines real espresso metrics with AI-generated cosmic poetry!
+Each reading combines real espresso metrics with gpt-oss-generated cosmic poetry!
 
 ### 🎬 Demo Instructions
 
