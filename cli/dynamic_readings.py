@@ -84,7 +84,28 @@ Respond with ONLY the reading, no other text.
         
         if response.status_code == 200:
             result = response.json()
-            reading = result["choices"][0]["message"]["content"].strip()
+            message = result["choices"][0]["message"]
+            
+            # Handle reasoning model - content might be in reasoning field
+            if message.get("content") and message["content"].strip():
+                reading = message["content"].strip()
+            elif message.get("reasoning") and message["reasoning"].strip():
+                # Extract content from reasoning field
+                reasoning = message["reasoning"].strip()
+                # Try to extract the actual response from reasoning
+                if '"' in reasoning:
+                    # Look for quoted content
+                    import re
+                    quotes = re.findall(r'"([^"]*)"', reasoning)
+                    if quotes:
+                        reading = quotes[-1]  # Take the last quoted content
+                    else:
+                        reading = reasoning.split('.')[-1].strip()  # Take last sentence
+                else:
+                    reading = reasoning.split('.')[-1].strip()  # Take last sentence
+            else:
+                reading = "A cosmic mystery unfolds in your cup."
+            
             # Clean up the response
             reading = reading.replace('"', '').replace("'", "").strip()
             return reading

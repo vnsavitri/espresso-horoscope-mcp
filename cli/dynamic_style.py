@@ -425,7 +425,28 @@ Respond with ONLY the style description, no other text.
         
         if response.status_code == 200:
             result = response.json()
-            style_text = result["choices"][0]["message"]["content"].strip()
+            message = result["choices"][0]["message"]
+            
+            # Handle reasoning model - content might be in reasoning field
+            if message.get("content") and message["content"].strip():
+                style_text = message["content"].strip()
+            elif message.get("reasoning") and message["reasoning"].strip():
+                # Extract content from reasoning field
+                reasoning = message["reasoning"].strip()
+                # Try to extract the actual response from reasoning
+                if '"' in reasoning:
+                    # Look for quoted content
+                    import re
+                    quotes = re.findall(r'"([^"]*)"', reasoning)
+                    if quotes:
+                        style_text = quotes[-1]  # Take the last quoted content
+                    else:
+                        style_text = reasoning.split('.')[-1].strip()  # Take last sentence
+                else:
+                    style_text = reasoning.split('.')[-1].strip()  # Take last sentence
+            else:
+                style_text = "cosmic-mystery"
+            
             # Clean up the response
             style_text = style_text.replace('"', '').replace("'", "").strip()
             return style_text
