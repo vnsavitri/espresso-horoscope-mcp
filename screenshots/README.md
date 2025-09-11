@@ -4,59 +4,73 @@ This folder contains example screenshots of the Espresso Horoscope MCP applicati
 
 ## Example Cards
 
-### 1. Gemini - Perfect Harmony
+### 1. Gemini - Fiery Cosmos
+
 ![Example 1](espresso-horoscope_reading_example1.png)
-- **Reading**: "Your shot flows like liquid starlight, achieving perfect harmony at 1.82:1 over 27 seconds. The cosmos celebrates this rare alignment."
-- **Severity**: Perfect
-- **Rule**: Sweet spot
-- **Shows**: Ideal espresso parameters with cosmic celebration
+
+- **Reading**: "A 1.88:1 brew sings a fiery lullaby, its 26-second dance scorching the palate like a star on a summer night; at 96.5 °C it burns with unbridled heat, leaving bitter echoes that cling to the tongue like distant meteors."
+- **Severity**: Warning!
+- **Rule**: Temp_high bitter
+- **Shows**: Too hot of an espresso parameters with fiery burn!
 
 ### 2. Gemini - Temperature Warning
+
 ![Example 2](espresso-horoscope_reading_example2.png)
+
 - **Reading**: "Lungo • Soft Constellation" - "Your shot flows like liquid ice at 90.1°C, beautiful but cold. The cosmos whispers: 'Add fire to awaken the sleeping flavors.'"
 - **Severity**: Warning
 - **Rule**: Temp low flat
 - **Shows**: Diagnostic feedback with actionable guidance
 
 ### 3. Taurus - Over-extraction
+
 ![Example 3](espresso-horoscope_reading_example3.png)
+
 - **Reading**: "Americano • Persistent Galaxy" - "Your espresso drips like a slow nebula, 4.05:1 whispers its gravity while 45 seconds unfurls like a comet's tail..."
 - **Severity**: Warning
 - **Rule**: Over extracted slow
 - **Shows**: Complex extraction issues with poetic interpretation
 
-### 4. Scorpio - Stellar Alignment
-![Example 4](espresso-horoscope_reading_example4.png)
-- **Reading**: "Espresso • Stellar Alignment" - "Your espresso glides at 2.09:1, a celestial ratio that whispers of twin moons in sync..."
-- **Severity**: Perfect
-- **Rule**: Sweet spot
-- **Shows**: Perfect shot parameters with cosmic harmony
+### 4. Libra - Celestial Perfection
 
-### 5. Libra - Celestial Perfection
-![Example 5](espresso-horoscope_reading_example5.png)
+![Example 4](espresso-horoscope_reading_example4.png)
+
 - **Reading**: "Espresso • Celestial Perfection" - "Your 1.87:1 brew sings a sweet symphony, each milliliter rising like stardust at 91.8°C..."
 - **Severity**: Perfect
 - **Rule**: Sweet spot
 - **Shows**: Ideal extraction with poetic description
 
+### 5. Scorpio - Stellar Alignment
+
+![Example 5](espresso-horoscope_reading_example5.png)
+
+- **Reading**: "Espresso • Stellar Alignment" - "Your espresso glides at 2.09:1, a celestial ratio that whispers of twin moons in sync..."
+- **Severity**: Perfect
+- **Rule**: Sweet spot
+- **Shows**: Perfect shot parameters with cosmic harmony
+
 ## What These Examples Demonstrate
 
 ### Technical Excellence
+
 - **Real espresso metrics**: Pressure, temperature, flow rate, extraction time
 - **Diagnostic accuracy**: Identifies over-extraction, temperature issues, perfect shots
 - **Actionable guidance**: Specific recommendations for improvement
 
 ### AI Creativity
+
 - **Poetic interpretations**: Each reading is unique and beautifully written
 - **Cosmic metaphors**: Technical data transformed into celestial imagery
 - **Personalized content**: Different styles for different zodiac signs
 
 ### Beautiful Design
+
 - **Gradient backgrounds**: Purple-to-pink cosmic themes
 - **Clean typography**: Easy to read technical data and poetic text
 - **Professional UI**: Modern, engaging interface design
 
 ### Educational Value
+
 - **Brewing science**: Teaches real espresso extraction principles
 - **Troubleshooting**: Shows how to identify and fix common issues
 - **Quality standards**: Demonstrates what makes a perfect shot
@@ -64,6 +78,7 @@ This folder contains example screenshots of the Espresso Horoscope MCP applicati
 ## For Hackathon Judges
 
 These screenshots show:
+
 - ✅ **GPT-OSS integration**: AI-generated content is creative and relevant
 - ✅ **Real-world application**: Practical espresso brewing guidance
 - ✅ **Technical depth**: Accurate coffee science with beautiful presentation
