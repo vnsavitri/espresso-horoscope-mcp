@@ -58,13 +58,13 @@ Quick setup for judges to verify the system:
 
 ```bash
 # 1. Generate demo data
-MMDD=0802 make demo_user
+MMDD=1007 make demo_user
 
 # 2. Start services
 make web
 
 # 3. Open browser
-open http://localhost:3001/?mmdd=0802
+open http://localhost:3001/?mmdd=1007
 
 # 4. Test determinism
 python3 tools/determinism_check.py
@@ -72,7 +72,7 @@ python3 tools/determinism_check.py
 
 **Expected results:**
 - ✅ Web interface loads with cosmic design
-- ✅ Birth date 0802 shows Leo zodiac
+- ✅ Birth date 1007 shows Libra zodiac
 - ✅ Determinism test passes (same input = same output)
 - ✅ Different birth dates show different zodiac signs
 
@@ -175,7 +175,7 @@ cd webui && npm run dev
 #### Experience the Magic
 
 1. **Open browser**: `http://localhost:3001`
-2. **Enter birth date**: Input MMDD format (e.g., `1021` for October 21st)
+2. **Enter birth date**: Input MMDD format (e.g., `1007` for October 7th)
 3. **Click**: "Generate my espresso horoscope"
 4. **View your cosmic reading**: See your personalized horoscope card with:
    - Your zodiac sign (e.g., 🦢 Libra)
