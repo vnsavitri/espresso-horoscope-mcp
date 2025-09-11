@@ -72,6 +72,7 @@ python3 tools/determinism_check.py
 ```
 
 **Expected results:**
+
 - ✅ Web interface loads with cosmic design
 - ✅ Birth date 1007 shows Libra zodiac
 - ✅ Determinism test passes (same input = same output)
@@ -105,7 +106,7 @@ Each horoscope gets a unique cosmic personality from 50+ curated styles:
 
 ### 📖 Creative Reading System
 
-No more boring "COSMIC PERFECTION ACHIEVED" - every reading is a unique cosmic poem:
+No more boring "PERFECTION ACHIEVED" - every reading is a unique cosmic poem:
 
 - *"Like a comet streaking across the night sky, your shot blazes through in just 16 seconds"*
 - *"Your shot battles against cosmic resistance, like thunder struggling through dense clouds"*
@@ -134,6 +135,7 @@ Your espresso's characteristics influence its cosmic style:
 ## 🚀 Quick Start
 
 ### 🏆 **For Hackathon Judges**
+
 **See [JUDGE_SETUP.md](JUDGE_SETUP.md) for bulletproof setup instructions that work on any platform!**
 
 ### Prerequisites
@@ -150,29 +152,27 @@ Your espresso's characteristics influence its cosmic style:
    git clone https://github.com/vnsavitri/espresso-horoscope-mcp.git
    cd espresso-horoscope-mcp
    ```
-
 2. **Run setup script** (cross-platform)
 
    ```bash
    # Unix/macOS
    ./setup.sh
-   
+
    # Windows
    setup.bat
-   
+
    # Or directly
    python setup.py
    ```
-
 3. **Start the application**
 
    ```bash
    # Terminal 1: Backend
    python start_backend.py
-   
+
    # Terminal 2: Frontend
    python start_frontend.py
-   
+
    # Browser: http://localhost:3001
    ```
 
@@ -223,6 +223,7 @@ For users with a Gaggiuino-equipped espresso machine.
 Imagine you're a Libra (birth date: 1007) with a Gaggiuino machine. Here's how your day would unfold:
 
 **Morning Shot (7 AM):**
+
 - You make your first espresso of the day
 - Gaggiuino sensors capture: pressure, temperature, flow rate, shot time
 - MCP processes this data in real-time
@@ -230,18 +231,21 @@ Imagine you're a Libra (birth date: 1007) with a Gaggiuino machine. Here's how y
 - Style: `dawn-rhythm` • 🦢 Libra
 
 **Afternoon Shot (2 PM):**
+
 - You make your second espresso
 - **Different shot data** (maybe faster flow, different pressure)
 - System generates: *"Your afternoon shot burns with midday intensity, like a star reaching its peak. At 2.1:1 in 18 seconds, the cosmos demands more patience."*
 - Style: `stellar-pulse` • 🦢 Libra
 
 **Evening Shot (7 PM):**
+
 - You make your third espresso
 - **Another unique shot** with different characteristics
 - System generates: *"Your evening shot whispers of cosmic rest, like a star settling into the night. The 1.5:1 ratio in 32 seconds speaks of gentle wisdom."*
 - Style: `dusk-flow` • 🦢 Libra
 
 **The Magic:**
+
 - **Same Birth Date = Consistent Zodiac**: All three shots show 🦢 Libra
 - **Different Shot Data = Different Readings**: Each shot gets unique cosmic interpretation
 - **Time-Based Variation**: Morning vs afternoon vs evening shots get different styles
@@ -454,9 +458,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Gaggiuino Community** for the amazing open-source espresso machine modifications
+- **[Gaggiuino MCP Server](https://glama.ai/mcp/servers/@AndrewKlement/gaggiuino-mcp)** by Andrew Klement for the MCP protocol integration
 - **Astrological Traditions** for the cosmic inspiration
-- **Espresso Enthusiasts** worldwide for the passion and dedication
 
 ---
 

@@ -97,7 +97,8 @@ def create_demo_deck(mmdd: str, k: int = 3, generate_png: bool = False, png_dir:
             "--rules", "rules/diagnostics.yaml", 
             "--astro", "content/astro_map.yaml",
             "--out", "out/cards.md",
-            "--birth-date", mmdd
+            "--birth-date", mmdd,
+            "--style", "gptoss"
         ]
         
         # Add PNG generation arguments if requested
