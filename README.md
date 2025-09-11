@@ -80,7 +80,9 @@ python3 tools/determinism_check.py
 ## 🌟 What Makes This Fun in a Weird Way
 
 - **Real Espresso Data**: Uses actual shot metrics from Gaggiuino machines or realistic simulations
+- **98 Shot Variants**: Comprehensive coverage including ristretto, lungo, americano, double shots, and more
 - **Dynamic Style Generation**: Each shot gets a unique cosmic personality based on characteristics and timing
+- **50+ Curated Styles**: Time-based, cosmic, coffee-inspired, mood-based, and elemental style categories
 - **Creative Poetic Readings**: No more boring templates - every reading is a unique cosmic poem
 - **Zodiac Integration**: Fun animal emojis and personalized readings based on your birth date
 - **Shot-Specific Variety**: Fast shots get "early-pulse" styles, slow shots get "lunar-flow" vibes
@@ -93,11 +95,12 @@ python3 tools/determinism_check.py
 
 ### 🎭 Dynamic Style Magic
 
-Each horoscope gets a unique cosmic personality:
+Each horoscope gets a unique cosmic personality from 50+ curated styles:
 
-- **🦢 Libra • nebula-balance** - Balanced, harmonious vibes
-- **👯‍♂️ Gemini • early-pulse** - Quick, energetic morning energy
-- **🦁 Leo • dawn-rhythm** - Powerful, confident cosmic flow
+- **🦢 Libra • ristretto-focus** - Intense, concentrated energy
+- **👯‍♂️ Gemini • dawn-pulse** - Quick, energetic morning energy
+- **🦁 Leo • cosmic-dream** - Powerful, mystical cosmic flow
+- **🏹 Sagittarius • afternoon-flow** - Adventurous, flowing energy
 
 ### 📖 Creative Reading System
 
@@ -119,6 +122,9 @@ The same shot feels different depending on when you pull it:
 
 Your espresso's characteristics influence its cosmic style:
 
+- **Ristretto shots** → ristretto-focus, espresso-intensity, single-precision
+- **Lungo shots** → lungo-patience, americano-gentle, extraction-perfect
+- **Double shots** → double-power, brew-mastery, roast-wisdom
 - **Fast shots** → early-pulse, stellar-pulse, cosmic-rush
 - **Slow shots** → lunar-flow, stellar-drift, cosmic-patience
 - **Powerful shots** → stellar-force, cosmic-power, nebula-strength

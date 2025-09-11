@@ -477,58 +477,88 @@ def generate_fallback_style(
     Returns:
         Fallback style description
     """
-    # Combine all characteristics
-    coffee_traits = coffee_profile["personality"][:2]  # Take first 2
-    mood_traits = daily_mood["mood_descriptors"][:1]   # Take first 1
+    # 50+ Curated Style Examples across all categories
+    curated_styles = {
+        # Time-based styles (12)
+        "time": [
+            "dawn-pulse", "morning-rhythm", "midday-force", "afternoon-flow",
+            "dusk-harmony", "evening-grace", "night-rhythm", "stellar-deep",
+            "rising-energy", "setting-grace", "cosmic-dream", "lunar-tide"
+        ],
+        
+        # Cosmic/astronomical styles (12)
+        "cosmic": [
+            "stellar-harmony", "nebula-balance", "lunar-grace", "solar-power",
+            "cosmic-rhythm", "stellar-pulse", "nebula-flow", "lunar-drift",
+            "stellar-force", "cosmic-balance", "nebula-strength", "lunar-soft"
+        ],
+        
+        # Coffee-inspired styles (10)
+        "coffee": [
+            "espresso-intensity", "ristretto-focus", "lungo-patience", "americano-gentle",
+            "double-power", "single-precision", "crema-smooth", "extraction-perfect",
+            "brew-mastery", "roast-wisdom"
+        ],
+        
+        # Mood-based styles (10)
+        "mood": [
+            "energetic-rush", "calm-wisdom", "creative-flow", "focused-clarity",
+            "peaceful-harmony", "dynamic-force", "serene-balance", "vibrant-energy",
+            "contemplative-deep", "inspiring-lift"
+        ],
+        
+        # Elemental styles (8)
+        "elemental": [
+            "fire-passion", "earth-grounded", "air-lightness", "water-fluidity",
+            "metal-precision", "wood-growth", "crystal-clarity", "storm-power"
+        ]
+    }
     
-    # Create style combinations with variations
-    style_options = []
+    # Combine all characteristics for context
+    coffee_traits = coffee_profile.get("personality", [])[:2]
+    mood_traits = daily_mood.get("mood_descriptors", [])[:1]
     
-    # Base combinations
-    if len(coffee_traits) > 0 and len(mood_traits) > 0:
-        style_options.append(f"{coffee_traits[0]}-{mood_traits[0]}")
-    else:
-        style_options.append("cosmic-balance")
+    # Determine style category based on context
+    style_category = "cosmic"  # Default
     
-    # Add shot variation influences
-    if shot_variation:
+    # Time-based selection
+    if time_variation:
+        time_phase = time_variation.get("time_of_day", "neutral")
+        if time_phase in ["morning", "afternoon", "evening", "night"]:
+            style_category = "time"
+    
+    # Shot-based selection
+    elif shot_variation:
         shot_rhythm = shot_variation.get("rhythm", "steady")
         shot_character = shot_variation.get("character", "balanced")
-        
-        if shot_rhythm == "fast":
-            style_options.extend(["stellar-pulse", "cosmic-rush", "nebula-burst"])
-        elif shot_rhythm == "slow":
-            style_options.extend(["lunar-flow", "stellar-drift", "cosmic-patience"])
-        elif shot_character == "powerful":
-            style_options.extend(["stellar-force", "cosmic-power", "nebula-strength"])
-        elif shot_character == "gentle":
-            style_options.extend(["lunar-grace", "stellar-soft", "cosmic-tender"])
-        else:
-            style_options.extend(["cosmic-rhythm", "stellar-harmony", "nebula-balance"])
-    else:
-        style_options.extend(["stellar-harmony", "lunar-peace", "nebula-flow", "cosmic-rhythm"])
+        if shot_rhythm in ["fast", "slow"] or shot_character in ["powerful", "gentle"]:
+            style_category = "coffee"
     
-    # Add time variation influences
-    if time_variation:
-        time_of_day = time_variation.get("time_of_day", "day")
-        cosmic_phase = time_variation.get("cosmic_phase", "neutral")
-        
-        if time_of_day == "morning":
-            style_options.extend(["dawn-pulse", "morning-rhythm", "rising-energy"])
-        elif time_of_day == "evening":
-            style_options.extend(["dusk-flow", "evening-harmony", "setting-grace"])
-        elif time_of_day == "night":
-            style_options.extend(["stellar-deep", "night-rhythm", "cosmic-dream"])
-        
-        if "early" in cosmic_phase:
-            style_options.extend(["early-pulse", "dawn-rhythm"])
-        elif "late" in cosmic_phase:
-            style_options.extend(["late-flow", "dusk-harmony"])
+    # Mood-based selection
+    elif mood_traits and any(mood in ["energetic", "calm", "creative", "focused"] for mood in mood_traits):
+        style_category = "mood"
     
-    # Use hash to pick consistently based on all factors
-    hash_input = str(coffee_profile) + str(daily_mood) + str(shot_variation) + str(time_variation)
-    style_hash = hash(hash_input) % len(style_options)
-    return style_options[style_hash]
+    # Coffee profile selection
+    elif coffee_traits and any(trait in ["intense", "smooth", "balanced", "powerful"] for trait in coffee_traits):
+        style_category = "elemental"
+    
+    # Get styles from selected category
+    available_styles = curated_styles.get(style_category, curated_styles["cosmic"])
+    
+    # Add some cross-category variety
+    if len(available_styles) > 1:
+        # Add 1-2 styles from other categories for variety
+        other_categories = [cat for cat in curated_styles.keys() if cat != style_category]
+        for other_cat in other_categories[:2]:  # Take up to 2 other categories
+            available_styles.extend(curated_styles[other_cat][:2])  # Add 2 from each
+    
+    # Select a style based on deterministic hash
+    import hashlib
+    style_seed = f"{coffee_traits}{mood_traits}{shot_variation}{time_variation}{style_category}"
+    hash_bytes = hashlib.sha256(style_seed.encode('utf-8')).digest()
+    style_index = int.from_bytes(hash_bytes[:4], byteorder='big') % len(available_styles)
+    
+    return available_styles[style_index]
 
 
 def get_dynamic_style_bank(
