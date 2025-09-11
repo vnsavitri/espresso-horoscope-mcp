@@ -11,6 +11,17 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 **Category**: Best Local Agent + Wildcard
 **Repository**: [github.com/vnsavitri/espresso-horoscope-mcp](https://github.com/vnsavitri/espresso-horoscope-mcp)
 
+### 📸 Example Readings
+
+See the [screenshots folder](screenshots/) for beautiful examples of AI-generated cosmic coffee readings:
+
+- **Gemini Perfect Harmony**: "Your shot flows like liquid starlight, achieving perfect harmony at 1.82:1 over 27 seconds"
+- **Taurus Over-extraction**: "Your espresso drips like a slow nebula, 4.05:1 whispers its gravity while 45 seconds unfurls like a comet's tail"
+- **Libra Celestial Perfection**: "Your 1.87:1 brew sings a sweet symphony, each milliliter rising like stardust at 91.8°C"
+- **Scorpio Stellar Alignment**: "Your espresso glides at 2.09:1, a celestial ratio that whispers of twin moons in sync"
+
+Each reading combines real espresso metrics with AI-generated cosmic poetry!
+
 ### 🎬 Demo Instructions
 
 1. **Start LM Studio** with `gpt-oss-20b` model loaded
