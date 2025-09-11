@@ -145,7 +145,7 @@ Your espresso's characteristics influence its cosmic style:
 
 ### 🏆 **For Hackathon Judges**
 
-**See [JUDGE_SETUP.md](JUDGE_SETUP.md) for bulletproof setup instructions that work on any platform!**
+**See [JUDGE_SETUP.md](JUDGE_SETUP.md) for (hopefully) bulletproof setup instructions that work on (almost) any platform!**
 
 ### Prerequisites
 
