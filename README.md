@@ -158,6 +158,10 @@ Your espresso's characteristics influence its cosmic style:
 
 Perfect for judges, users, or anyone who wants to experience the horoscope system without a physical machine.
 
+#### 🌅 Morning Coffee Demo Scenario
+
+*"It's 8 AM and I just brewed my morning espresso with my (imaginary) Gaggia machine. The shot data has been automatically downloaded and processed by the MCP system. Now I just need to input my birth date to get my personalized cosmic reading!"*
+
 #### Setup
 
 ```bash
@@ -168,17 +172,23 @@ make serve
 cd webui && npm run dev
 ```
 
-#### Experience
+#### Experience the Magic
 
 1. **Open browser**: `http://localhost:3001`
 2. **Enter birth date**: Input MMDD format (e.g., `1021` for October 21st)
 3. **Click**: "Generate my espresso horoscope"
-4. **View cards**: See 3 personalized horoscope cards with cosmic guidance
+4. **View your cosmic reading**: See your personalized horoscope card with:
+   - Your zodiac sign (e.g., 🦢 Libra)
+   - Dynamic style (e.g., `dawn-rhythm`)
+   - Creative reading based on your actual shot data
+   - Real espresso metrics (ratio, time, pressure, temperature)
 5. **Try different dates**: Click "Try Different Date" to explore different zodiac signs
 
-#### Experience the Magic
+#### The Demo Flow
 
-Enter your birth date in MMDD format (e.g., `1021` for October 21st) and discover your personalized cosmic coffee destiny. Each birth date generates unique horoscope cards with your zodiac sign and personalized guidance.
+**"This morning I made coffee..."** → **"The data is already here..."** → **"I input my birth date..."** → **"Voila - my horoscope!"**
+
+This demonstrates the complete vision: real shot data + personalization + instant cosmic guidance, all running locally with AI enhancement.
 
 ### Scenario 2: Gaggiuino Machine Integration
 
