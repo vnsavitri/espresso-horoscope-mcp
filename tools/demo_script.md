@@ -54,9 +54,9 @@ In another terminal, start the Next.js UI:
 cd webui && npm run dev
 ```
 
-The Next.js UI will be available at `http://localhost:3000` with:
+The Next.js UI will be available at `http://localhost:3001` with:
 - **Main Page**: Scrollable list of horoscope cards
-- **Share Routes**: `http://localhost:3000/share/0` (individual cards)
+- **Share Routes**: `http://localhost:3001/share/0` (individual cards)
 
 ### 3. Export High-Quality Images
 
@@ -172,7 +172,7 @@ python3 cli/community_insights.py
 
 - [ ] **Data Pipeline**: `make demo` generates cards successfully
 - [ ] **Web Interface**: FastAPI server serves data at `http://127.0.0.1:8000`
-- [ ] **Modern UI**: Next.js interface displays cards at `http://localhost:3000`
+- [ ] **Modern UI**: Next.js interface displays cards at `http://localhost:3001`
 - [ ] **Image Export**: `make export_images` creates social media images
 - [ ] **AI Enhancement**: LM Studio integration changes phrasing, keeps numbers
 - [ ] **Birth Date Variation**: Different zodiac signs show different animal emojis
@@ -204,7 +204,7 @@ python3 cli/community_insights.py
 curl -s http://127.0.0.1:8000/cards.json | jq '.readings | length'
 
 # Check Next.js server
-curl -s http://localhost:3000 | grep -o "Espresso Horoscope"
+curl -s http://localhost:3001 | grep -o "Espresso Horoscope"
 
 # Check exported images
 ls -la webui/share/*.png webui/share/*.jpg
