@@ -16,10 +16,7 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 See the [screenshots folder](screenshots/) for beautiful examples of AI-generated cosmic coffee readings:
 
 ![Example Reading 1](screenshots/espresso-horoscope_reading_example1.png)
-![Example Reading 2](screenshots/espresso-horoscope_reading_example2.png)
 ![Example Reading 3](screenshots/espresso-horoscope_reading_example3.png)
-![Example Reading 4](screenshots/espresso-horoscope_reading_example4.png)
-![Example Reading 5](screenshots/espresso-horoscope_reading_example5.png)
 
 Each reading combines real espresso metrics with AI-generated cosmic poetry!
 
