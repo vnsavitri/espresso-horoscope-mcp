@@ -7,6 +7,5 @@ out/
 .DS_Store
 CURSOR.md
 doc-reference/
-tools/hackathon_demo_script.md
-tools/quick_demo.sh
-tools/demo_recording_script.md
+# Demo preparation files (keep local)
+doc-reference/demo-prep/
