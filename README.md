@@ -13,7 +13,7 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 
 ### 📸 Example Readings
 
-See the [screenshots folder](screenshots/) for beautiful examples of AI-generated cosmic coffee readings:
+See the [screenshots folder](screenshots/) for more examples of AI-generated cosmic coffee readings:
 
 ![Example Reading 1](screenshots/espresso-horoscope_reading_example1.png)
 ![Example Reading 3](screenshots/espresso-horoscope_reading_example3.png)
