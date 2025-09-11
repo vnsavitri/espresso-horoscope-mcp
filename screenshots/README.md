@@ -4,31 +4,36 @@ This folder contains example screenshots of the Espresso Horoscope MCP applicati
 
 ## Example Cards
 
-### 1. Gemini - Perfect Harmony (0611)
+### 1. Gemini - Perfect Harmony
+![Example 1](espresso-horoscope_reading_example1.png)
 - **Reading**: "Your shot flows like liquid starlight, achieving perfect harmony at 1.82:1 over 27 seconds. The cosmos celebrates this rare alignment."
 - **Severity**: Perfect
 - **Rule**: Sweet spot
 - **Shows**: Ideal espresso parameters with cosmic celebration
 
-### 2. Gemini - Temperature Warning (0611)
+### 2. Gemini - Temperature Warning
+![Example 2](espresso-horoscope_reading_example2.png)
 - **Reading**: "Lungo • Soft Constellation" - "Your shot flows like liquid ice at 90.1°C, beautiful but cold. The cosmos whispers: 'Add fire to awaken the sleeping flavors.'"
 - **Severity**: Warning
 - **Rule**: Temp low flat
 - **Shows**: Diagnostic feedback with actionable guidance
 
-### 3. Taurus - Over-extraction (0420)
+### 3. Taurus - Over-extraction
+![Example 3](espresso-horoscope_reading_example3.png)
 - **Reading**: "Americano • Persistent Galaxy" - "Your espresso drips like a slow nebula, 4.05:1 whispers its gravity while 45 seconds unfurls like a comet's tail..."
 - **Severity**: Warning
 - **Rule**: Over extracted slow
 - **Shows**: Complex extraction issues with poetic interpretation
 
-### 4. Scorpio - Stellar Alignment (1107)
+### 4. Scorpio - Stellar Alignment
+![Example 4](espresso-horoscope_reading_example4.png)
 - **Reading**: "Espresso • Stellar Alignment" - "Your espresso glides at 2.09:1, a celestial ratio that whispers of twin moons in sync..."
 - **Severity**: Perfect
 - **Rule**: Sweet spot
 - **Shows**: Perfect shot parameters with cosmic harmony
 
-### 5. Libra - Celestial Perfection (1010)
+### 5. Libra - Celestial Perfection
+![Example 5](espresso-horoscope_reading_example5.png)
 - **Reading**: "Espresso • Celestial Perfection" - "Your 1.87:1 brew sings a sweet symphony, each milliliter rising like stardust at 91.8°C..."
 - **Severity**: Perfect
 - **Rule**: Sweet spot
