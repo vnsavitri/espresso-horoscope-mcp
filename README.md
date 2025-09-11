@@ -193,7 +193,7 @@ Perfect for judges, users, or anyone who wants to experience the horoscope syste
 
 #### 🌅 Morning Coffee Demo Scenario
 
-*"It's 8 AM and I just brewed my morning espresso with my (imaginary) Gaggia machine. The shot data has been automatically downloaded and processed by the MCP system. Now I just need to input my birth date to get my personalized cosmic reading!"*
+*"It's 8 AM and I just brewed my morning espresso with my (imaginary) Gaggia machine. The shot data has been automatically downloaded and processed by the MCP server. Now I just need to input my birth date to get my personalized cosmic reading!"*
 
 #### Setup
 
