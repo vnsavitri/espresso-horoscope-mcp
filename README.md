@@ -15,11 +15,12 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 
 1. **Start LM Studio** with `gpt-oss-20b` model loaded
 2. **Set environment**: `export OPENAI_BASE_URL="http://localhost:1234/v1"`
-3. **Start backend**: `uvicorn web.app:app --reload`
-4. **Start frontend**: `cd webui && npm run dev`
-5. **Open**: http://localhost:3001
-6. **Enter birth date** (MMDD format, e.g., `1021`)
-7. **Generate horoscope** and see GPT-OSS in action!
+3. **Generate demo data**: `MMDD=1007 make demo_user`
+4. **Start backend**: `uvicorn web.app:app --reload`
+5. **Start frontend**: `cd webui && npm run dev`
+6. **Open**: http://localhost:3001
+7. **Enter birth date** (MMDD format, e.g., `1007`)
+8. **Generate horoscope** and see GPT-OSS in action!
 
 ### ✈️ **Airplane Mode Demo** (Proves Offline Capability)
 
@@ -166,7 +167,7 @@ Perfect for judges, users, or anyone who wants to experience the horoscope syste
 
 ```bash
 # Start the FastAPI backend
-make serve
+make web
 
 # In a new terminal, start the web interface
 cd webui && npm run dev
@@ -196,7 +197,7 @@ For users with a Gaggiuino-equipped espresso machine.
 
 #### 🌅 Real-World Daily Coffee Journey
 
-Imagine you're a Libra (birth date: 1021) with a Gaggiuino machine. Here's how your day would unfold:
+Imagine you're a Libra (birth date: 1007) with a Gaggiuino machine. Here's how your day would unfold:
 
 **Morning Shot (7 AM):**
 - You make your first espresso of the day
@@ -241,7 +242,7 @@ Imagine you're a Libra (birth date: 1021) with a Gaggiuino machine. Here's how y
 # Place shot data files in the data/ directory
 
 # Start the system
-make serve
+make web
 cd webui && npm run dev
 ```
 
@@ -305,10 +306,10 @@ espresso-horoscope-mcp/
 
 ```bash
 # Generate demo cards for a specific birth date
-make demo_user MMDD=1021
+make demo_user MMDD=1007
 
 # Generate cards with PNG export
-make demo_user_png MMDD=1021
+make demo_user_png MMDD=1007
 
 # Start backend server
 make serve
@@ -324,7 +325,7 @@ make clean
 
 - `GET /` - Main web interface
 - `GET /cards.json` - Get existing cards
-- `GET /generate_cards?mmdd=1021` - Generate new cards for birth date
+- `GET /generate_cards?mmdd=1007` - Generate new cards for birth date
 - `POST /api/card` - Generate PNG card image
 - `GET /health` - Health check
 

@@ -7,12 +7,12 @@ cards_png: data/features.jsonl ; $(PY) cli/cards.py --features data/features.jso
 web: ; $(PY) web/app.py
 demo: record extract cards ; @echo "Demo built -> out/cards.md"
 demo_user:
-	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=0802 make demo_user"; exit 1; fi
+	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=1007 make demo_user"; exit 1; fi
 	@echo "🎯 Creating demo deck for birth date $(MMDD)..."
 	$(PY) tools/make_demo_deck.py --mmdd $(MMDD)
 	@echo "🎉 Demo deck created -> out/cards.md"
 demo_user_png:
-	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=0802 make demo_user_png"; exit 1; fi
+	@if [ -z "$(MMDD)" ]; then echo "❌ Please specify MMDD: MMDD=1007 make demo_user_png"; exit 1; fi
 	@echo "🎯 Creating demo deck with PNG cards for birth date $(MMDD)..."
 	$(PY) tools/make_demo_deck.py --mmdd $(MMDD) --png --png-dir out/png_cards
 	@echo "🎉 Demo deck with PNG cards created -> out/cards.md + out/png_cards/"
