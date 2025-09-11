@@ -133,6 +133,9 @@ Your espresso's characteristics influence its cosmic style:
 
 ## 🚀 Quick Start
 
+### 🏆 **For Hackathon Judges**
+**See [JUDGE_SETUP.md](JUDGE_SETUP.md) for bulletproof setup instructions that work on any platform!**
+
 ### Prerequisites
 
 - **Python 3.8+**
@@ -147,17 +150,30 @@ Your espresso's characteristics influence its cosmic style:
    git clone https://github.com/vnsavitri/espresso-horoscope-mcp.git
    cd espresso-horoscope-mcp
    ```
-2. **Install Python dependencies**
+
+2. **Run setup script** (cross-platform)
 
    ```bash
-   pip install -e .
+   # Unix/macOS
+   ./setup.sh
+   
+   # Windows
+   setup.bat
+   
+   # Or directly
+   python setup.py
    ```
-3. **Install Node.js dependencies**
+
+3. **Start the application**
 
    ```bash
-   cd webui
-   npm install
-   cd ..
+   # Terminal 1: Backend
+   python start_backend.py
+   
+   # Terminal 2: Frontend
+   python start_frontend.py
+   
+   # Browser: http://localhost:3001
    ```
 
 ## 🎯 Usage Scenarios
