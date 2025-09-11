@@ -1,0 +1,25 @@
+# Optimize Git performance
+*.py diff=python
+*.json diff=json
+*.jsonl diff=json
+*.yaml diff=yaml
+*.md diff=markdown
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+
+# Large data files (optimize handling)
+sample/*.jsonl -diff
+out/*.json -diff
+
+# Text files
+*.txt text
+*.md text
+*.py text
+*.json text
+*.yaml text
+*.yml text
