@@ -17,7 +17,7 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 2. **Set environment**: `export OPENAI_BASE_URL="http://localhost:1234/v1"`
 3. **Start backend**: `uvicorn web.app:app --reload`
 4. **Start frontend**: `cd webui && npm run dev`
-5. **Open**: http://localhost:3000
+5. **Open**: http://localhost:3001
 6. **Enter birth date** (MMDD format, e.g., `1021`)
 7. **Generate horoscope** and see GPT-OSS in action!
 
@@ -40,6 +40,41 @@ A mystical fusion of espresso shot analysis and astrological horoscopes, powered
 - **Dynamic Styles**: AI generates unique style names (`dusk-flow`, `stellar-pulse`)
 - **Creative Readings**: Poetic descriptions instead of generic templates
 - **Fallback System**: Works perfectly even without AI
+
+### ✈️ **Proving Offline Capability**
+
+The system demonstrates true local AI processing:
+
+1. **Turn off Wi-Fi** - Disconnect from internet
+2. **Generate horoscope** - System continues working
+3. **Show AI console** - LM Studio/Ollama streaming tokens
+4. **Reconnect Wi-Fi** - Resume normal operation
+
+This proves the "Best Local Agent" category - no cloud dependencies, no internet required for AI inference.
+
+### ⚡ **One-Minute Validation**
+
+Quick setup for judges to verify the system:
+
+```bash
+# 1. Generate demo data
+MMDD=0802 make demo_user
+
+# 2. Start services
+make web
+
+# 3. Open browser
+open http://localhost:3001/?mmdd=0802
+
+# 4. Test determinism
+python3 tools/determinism_check.py
+```
+
+**Expected results:**
+- ✅ Web interface loads with cosmic design
+- ✅ Birth date 0802 shows Leo zodiac
+- ✅ Determinism test passes (same input = same output)
+- ✅ Different birth dates show different zodiac signs
 
 ## 🌟 What Makes This Fun in a Weird Way
 
@@ -135,7 +170,7 @@ cd webui && npm run dev
 
 #### Experience
 
-1. **Open browser**: `http://localhost:3000`
+1. **Open browser**: `http://localhost:3001`
 2. **Enter birth date**: Input MMDD format (e.g., `1021` for October 21st)
 3. **Click**: "Generate my espresso horoscope"
 4. **View cards**: See 3 personalized horoscope cards with cosmic guidance

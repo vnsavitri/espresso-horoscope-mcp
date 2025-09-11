@@ -531,7 +531,7 @@ def generate_png_card(json_data: Dict[str, Any], output_dir: Path = None) -> Opt
         }
         
         # Call the Next.js API
-        api_url = "http://localhost:3000/api/card"
+        api_url = "http://localhost:3001/api/card"
         response = requests.post(api_url, json=payload, timeout=30)
         
         if response.status_code == 200:
@@ -555,7 +555,7 @@ def generate_png_card(json_data: Dict[str, Any], output_dir: Path = None) -> Opt
             return None
             
     except requests.exceptions.ConnectionError:
-        print("Warning: Could not connect to Next.js API (http://localhost:3000/api/card)", file=sys.stderr)
+        print("Warning: Could not connect to Next.js API (http://localhost:3001/api/card)", file=sys.stderr)
         print("Make sure the Next.js server is running with: npm run dev", file=sys.stderr)
         return None
     except Exception as e:

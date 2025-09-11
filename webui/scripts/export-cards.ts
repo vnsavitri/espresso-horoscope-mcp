@@ -77,8 +77,8 @@ async function exportCard(
     : `card_${cardIndex}`;
   
   const url = format === 'og'
-    ? `http://localhost:3000/share/${cardIndex}?format=og`
-    : `http://localhost:3000/share/${cardIndex}`;
+    ? `http://localhost:3001/share/${cardIndex}?format=og`
+    : `http://localhost:3001/share/${cardIndex}`;
 
   console.log(`📸 Exporting card ${cardIndex} (${format})...`);
   
@@ -149,7 +149,7 @@ Examples:
 
 Requirements:
   - FastAPI server running on http://127.0.0.1:8000
-  - Next.js server running on http://localhost:3000
+  - Next.js server running on http://localhost:3001
   - Cards available at /cards.json endpoint
 `);
     return;
