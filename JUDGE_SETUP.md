@@ -14,6 +14,7 @@ python setup.py
 ```
 
 **That's it!** The setup script will:
+
 - ✅ Check Python 3.8+ and Node.js 18+
 - ✅ Install all dependencies automatically
 - ✅ Create cross-platform start scripts
@@ -66,28 +67,34 @@ python run.py health
 ## 🚨 Troubleshooting
 
 ### **"Python not found"**
+
 - **Windows**: Install from https://python.org
 - **macOS**: `brew install python3`
 - **Linux**: `sudo apt install python3 python3-pip`
 
 ### **"Node.js not found"**
+
 - Install from https://nodejs.org (LTS version)
 
 ### **"Dependencies failed"**
+
 - Re-run: `python setup.py`
 - Check internet connection
 
 ### **"Backend won't start"**
+
 - Check port 8000 is free
 - Try: `python start_backend.py`
 
 ### **"Frontend won't start"**
+
 - Check port 3001 is free
 - Try: `cd webui && npm run dev`
 
 ## 🎯 What Makes This Special
 
 ### **Technical Excellence**
+
 - ✅ **Real espresso data**: 98 shot variants with authentic metrics
 - ✅ **AI integration**: GPT-OSS for dynamic content generation
 - ✅ **Offline capable**: Works without internet
@@ -95,12 +102,14 @@ python run.py health
 - ✅ **Modern stack**: FastAPI + Next.js + TypeScript
 
 ### **Innovation**
+
 - ✅ **Unique concept**: Coffee + astrology + AI
 - ✅ **Educational value**: Teaches espresso brewing
 - ✅ **Beautiful design**: Professional UI/UX
 - ✅ **Real-world application**: Gaggiuino machine integration
 
 ### **Hackathon Fit**
+
 - ✅ **GPT-OSS integration**: Demonstrates local AI capabilities
 - ✅ **Offline operation**: Proves independence from external APIs
 - ✅ **Creative application**: Shows AI in unexpected domain
@@ -109,12 +118,14 @@ python run.py health
 ## 📊 Demo Data
 
 The system includes realistic espresso shot data:
+
 - **Ristretto**: 1.8:1 ratio, 20-25s extraction
-- **Espresso**: 2.0:1 ratio, 25-30s extraction  
+- **Espresso**: 2.0:1 ratio, 25-30s extraction
 - **Lungo**: 3.0:1 ratio, 35-45s extraction
 - **Americano**: 4.0:1 ratio, 40-50s extraction
 
 Each shot includes:
+
 - Pressure curves
 - Flow rates
 - Temperature profiles
@@ -142,4 +153,4 @@ Each shot includes:
 
 ---
 
-**Ready to judge?** The project is bulletproof and will run on any system! 🚀
+**Ready to judge?** The project is (hopefully) bulletproof and will run on (almost) )any system! 🚀
