@@ -1,4 +1,4 @@
-☕️ # Espresso Horoscope MCP
+# ☕️ Espresso Horoscope MCP
 
 A local-first MCP project that turns espresso shot metrics and a birth date into a personalized "cosmic" reading, generated offline with a local GPT-OSS model through LM Studio.
 
