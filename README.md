@@ -1,6 +1,6 @@
 # ☕️ Espresso Horoscope MCP
 
-A local-first MCP project that turns espresso shot metrics and a birth date into a personalized "cosmic" reading, generated offline with a local GPT-OSS model through LM Studio.
+A local-first MCP project that turns espresso shot metrics (from Gaggiuino espresso machine) and a birth date into a personalized "cosmic" reading, generated offline with a local GPT-OSS model through LM Studio.
 
 Built as a playful hackathon prototype, but structured as a real demonstration of an offline agent pattern: ingest domain data, normalize it, pass it through a strict tool/prompt boundary, and generate a user-facing artifact without cloud inference.
 
