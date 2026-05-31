@@ -47,7 +47,7 @@ More examples are in [screenshots/](screenshots/).
 
 This was built for the **OpenAI Open Model Hackathon** in the **Best Local Agent** category. The category asked for useful agentic applications of GPT-OSS that could run without internet access.
 
-The honest learning goal was simple: I wanted to get my hands dirty with local model inference. A six-week hackathon with a real submission deadline gave me the right kind of constraint. It forced me to make pragmatic choices, cut scope, and ship a working demo instead of endlessly reading tutorials.
+The honest learning goal was simple: I wanted to get my hands dirty with local model inference. A weekend hackathon with a real submission deadline gave me the right kind of constraint. It forced me to make pragmatic choices, cut scope, and ship a working demo instead of endlessly reading tutorials.
 
 The horoscope framing is deliberately playful. The architecture underneath it is the real point: a reproducible, offline-first local agent workflow that combines structured domain data with local LLM inference through an MCP-shaped interface.
 
